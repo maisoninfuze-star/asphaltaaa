@@ -1,9 +1,21 @@
 const B = "/assets/generated";
 
+/** Cinematic hero video options (fal.ai). Change `activeHero` to switch. */
+export const heroVariants = {
+  driveway: { video: `${B}/hero.mp4`, poster: `${B}/hero-poster.jpg`,
+    label: "Entrée sinueuse au coucher du soleil" },
+  paver: { video: `${B}/hero-alt1.mp4`, poster: `${B}/hero-alt1.jpg`,
+    label: "Pose d'asphalte à chaud" },
+  reveal: { video: `${B}/hero-alt2.mp4`, poster: `${B}/hero-alt2.jpg`,
+    label: "Révélation aérienne d'un domaine" },
+} as const;
+
+export const activeHero: keyof typeof heroVariants = "driveway";
+
 export const img = {
   heroAerial: `${B}/hero-aerial.jpg`,
-  heroVideo: `${B}/hero.mp4`,
-  heroPoster: `${B}/hero-poster.jpg`,
+  heroVideo: heroVariants[activeHero].video,
+  heroPoster: heroVariants[activeHero].poster,
   storyPaver: `${B}/story-paver.jpg`,
   baBefore: `${B}/ba-before.jpg`,
   baAfter: `${B}/ba-after.jpg`,
