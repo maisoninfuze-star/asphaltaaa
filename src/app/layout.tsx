@@ -5,6 +5,9 @@ import { site } from "@/lib/site";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { Cursor } from "@/components/motion/cursor";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { IntroLoader } from "@/components/intro-loader";
 
 const archivo = Archivo({
   variable: "--font-archivo",
@@ -99,6 +102,9 @@ export default function RootLayout({
         >
           Aller au contenu
         </a>
+        <IntroLoader />
+        <Cursor />
+        <ScrollProgress />
         <SmoothScroll>
           <SiteHeader />
           <main id="contenu" className="flex-1">

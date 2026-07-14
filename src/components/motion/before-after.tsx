@@ -44,6 +44,7 @@ export function BeforeAfter({
   return (
     <div
       ref={ref}
+      data-cursor="Glisser"
       className={cn(
         "relative select-none overflow-hidden bg-asphalt-2 touch-none",
         className
