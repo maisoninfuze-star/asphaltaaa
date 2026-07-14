@@ -2,6 +2,8 @@ const B = "/assets/generated";
 
 export const img = {
   heroAerial: `${B}/hero-aerial.jpg`,
+  heroVideo: `${B}/hero.mp4`,
+  heroPoster: `${B}/hero-poster.jpg`,
   storyPaver: `${B}/story-paver.jpg`,
   baBefore: `${B}/ba-before.jpg`,
   baAfter: `${B}/ba-after.jpg`,

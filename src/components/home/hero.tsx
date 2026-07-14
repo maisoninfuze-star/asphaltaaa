@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { site } from "@/lib/site";
 import { img } from "@/lib/images";
@@ -18,6 +18,15 @@ const line = {
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
+  const [allowVideo, setAllowVideo] = useState(false);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Skip the video on very small screens too, to save mobile data.
+    setAllowVideo(!reduce);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -33,16 +42,35 @@ export function Hero() {
       ref={ref}
       className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden bg-asphalt"
     >
-      {/* Cinematic aerial background with parallax */}
+      {/* Cinematic aerial background with parallax.
+          Image is the always-present base (instant paint, SEO, reduced-motion);
+          the fal.ai drone video fades in on top once it can play. */}
       <motion.div style={{ y, scale }} className="absolute inset-0 z-0 will-change-transform">
         <Image
-          src={img.heroAerial}
+          src={img.heroPoster}
           alt="Vue aérienne d'une entrée d'asphalte fraîchement pavée au coucher du soleil"
           fill
           priority
           sizes="100vw"
           className="object-cover"
         />
+        {allowVideo && (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            onCanPlay={(e) => {
+              setVideoReady(true);
+              e.currentTarget.play().catch(() => {});
+            }}
+            className="absolute inset-0 h-full w-full object-cover transition-opacity duration-1000"
+            style={{ opacity: videoReady ? 1 : 0 }}
+          >
+            <source src={img.heroVideo} type="video/mp4" />
+          </video>
+        )}
       </motion.div>
       <motion.div
         aria-hidden
