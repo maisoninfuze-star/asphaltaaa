@@ -1,26 +1,171 @@
 @import "tailwindcss";
 
+/* ============================================================
+   ASPHALTE AAA — Industrial luxury design system
+   Deep asphalt black · concrete grey · warm white · hi-vis yellow
+   ============================================================ */
+
+@theme {
+  /* Core palette */
+  --color-asphalt: #0b0b0d;        /* deep asphalt black */
+  --color-asphalt-2: #131316;      /* raised surface */
+  --color-asphalt-3: #1b1b1f;      /* card / border base */
+  --color-concrete: #8d8b86;       /* concrete grey */
+  --color-concrete-light: #b8b5ae;
+  --color-steel: #3a3b40;          /* steel line */
+  --color-warm: #f4f1ea;           /* warm white */
+  --color-warm-2: #e9e5db;
+  --color-hivis: #f5c518;          /* construction yellow */
+  --color-hivis-deep: #d9a500;
+
+  --color-background: var(--color-asphalt);
+  --color-foreground: var(--color-warm);
+
+  /* Type */
+  --font-display: var(--font-archivo-expanded), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  border-color: color-mix(in oklab, var(--color-warm) 12%, transparent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-asphalt);
+  color: var(--color-warm);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv01";
+  overflow-x: clip;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+::selection {
+  background: var(--color-hivis);
+  color: var(--color-asphalt);
+}
+
+/* Focus ring — accessible */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--color-hivis);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Utilities ---------- */
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 88rem;
+  padding-inline: 1.5rem;
+  @media (min-width: 1024px) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Display headline: tight, heavy, editorial */
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-hivis);
+}
+
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-concrete);
+}
+
+/* ---------- Textures ---------- */
+
+/* Fine asphalt grain */
+.tex-asphalt {
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.015) 0 1px, transparent 1px),
+    radial-gradient(circle at 70% 65%, rgba(255, 255, 255, 0.02) 0 1px, transparent 1px),
+    radial-gradient(circle at 45% 85%, rgba(0, 0, 0, 0.3) 0 1px, transparent 1px);
+  background-size: 7px 7px, 11px 11px, 5px 5px;
+}
+
+/* Hi-vis hazard stripes */
+.tex-hazard {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-hivis) 0 12px,
+    var(--color-asphalt) 12px 24px
+  );
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* Reveal helpers (JS toggles data-inview) */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.9s var(--ease-out-expo),
+    transform 0.9s var(--ease-out-expo);
+  will-change: transform, opacity;
+}
+[data-reveal][data-inview="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+.line-mask {
+  overflow: hidden;
+  display: block;
+}
+.line-mask > span {
+  display: block;
 }
