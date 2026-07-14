@@ -10,7 +10,7 @@ export const heroVariants = {
     label: "Révélation aérienne d'un domaine" },
 } as const;
 
-export const activeHero: keyof typeof heroVariants = "driveway";
+export const activeHero: keyof typeof heroVariants = "paver";
 
 export const img = {
   heroAerial: `${B}/hero-aerial.jpg`,
