@@ -78,7 +78,7 @@ export function Hero() {
           Excavation · Pavage · Entretien — {site.regions[0]}
         </motion.p>
 
-        <h1 className="display text-warm text-[15vw] leading-[0.85] sm:text-[12vw] lg:text-[9.5vw] [text-shadow:0_2px_40px_rgba(0,0,0,0.5)]">
+        <h1 className="display text-warm text-[clamp(2.5rem,12.5vw,8.5rem)] leading-[0.85] [text-shadow:0_2px_40px_rgba(0,0,0,0.5)]">
           {["Bâtir des", "fondations", "qui durent."].map((t, i) => (
             <span key={i} className="line-mask">
               <motion.span
