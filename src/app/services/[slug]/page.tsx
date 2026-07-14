@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { services, site } from "@/lib/site";
+import { serviceImg } from "@/lib/images";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
+import { ParallaxImage } from "@/components/motion/parallax-image";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -52,6 +54,16 @@ export default async function ServiceDetail({
         index={`/ ${String(idx + 1).padStart(2, "0")}`}
         title={s.title}
         intro={s.desc}
+      />
+
+      <ParallaxImage
+        src={serviceImg[slug]}
+        alt={s.title}
+        priority
+        strength={12}
+        sizes="100vw"
+        imgClassName="object-[50%_32%]"
+        className="aspect-[16/9] w-full border-y border-warm/10 sm:aspect-[2/1] lg:aspect-[21/8]"
       />
 
       <section className="border-t border-warm/10 bg-asphalt py-16 lg:py-24">

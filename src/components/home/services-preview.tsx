@@ -1,5 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
 import { services } from "@/lib/site";
+import { serviceImg } from "@/lib/images";
 import { Reveal } from "@/components/reveal";
 
 export function ServicesPreview() {
@@ -31,15 +33,28 @@ export function ServicesPreview() {
             >
               <Link
                 href={`/services/${s.slug}`}
-                className="group relative flex min-h-[15rem] flex-col justify-between overflow-hidden p-8 transition-colors duration-500 hover:bg-asphalt-3"
+                className="group relative flex min-h-[16rem] flex-col justify-between overflow-hidden p-8"
               >
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
-                  style={{ background: "rgba(245,197,24,0.14)" }}
-                />
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-concrete">
+                {/* Image reveals on hover */}
+                <div className="absolute inset-0 -z-0 opacity-0 transition-opacity duration-700 group-hover:opacity-100">
+                  <Image
+                    src={serviceImg[s.slug]}
+                    alt=""
+                    fill
+                    sizes="(max-width:640px) 100vw, 33vw"
+                    className="scale-105 object-cover transition-transform duration-[1.2s] group-hover:scale-100"
+                  />
+                  <div
+                    aria-hidden
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(11,11,13,0.55), rgba(11,11,13,0.92))",
+                    }}
+                  />
+                </div>
+                <div className="relative z-10 flex items-center justify-between">
+                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-concrete transition-colors group-hover:text-warm/70">
                     {String(i + 1).padStart(2, "0")} · {s.category}
                   </span>
                   {s.verified && (
@@ -48,13 +63,13 @@ export function ServicesPreview() {
                     </span>
                   )}
                 </div>
-                <div>
+                <div className="relative z-10">
                   <h3 className="display mb-2 text-2xl text-warm transition-colors group-hover:text-hivis">
                     {s.title}
                   </h3>
                   <p className="text-sm text-concrete-light">{s.short}</p>
                 </div>
-                <span className="mt-6 inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-warm/60 transition-colors group-hover:text-hivis">
+                <span className="relative z-10 mt-6 inline-flex items-center gap-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-warm/60 transition-colors group-hover:text-hivis">
                   Détails
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </span>

@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { projects } from "@/lib/site";
+import { projectImg } from "@/lib/images";
 import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
+import { ImageReveal } from "@/components/motion/image-reveal";
+import { BeforeAfter } from "@/components/motion/before-after";
+import { img } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Réalisations",
@@ -25,26 +29,20 @@ export default function RealisationsPage() {
           {projects.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 80}>
               <article className="group flex h-full flex-col overflow-hidden border border-warm/10 bg-asphalt-2">
-                {/* Placeholder visual — before/after slot */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-asphalt tex-asphalt">
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 opacity-70"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #1b1b1f 0%, #0d0d0f 60%), radial-gradient(60% 60% at 30% 20%, rgba(245,197,24,0.10), transparent)",
-                    }}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <ImageReveal
+                    src={projectImg[p.slug]}
+                    alt={p.title}
+                    sizes="(max-width:768px) 100vw, 50vw"
+                    className="h-full w-full"
                   />
-                  <div className="absolute left-4 top-4 flex gap-2">
+                  <div className="absolute left-4 top-4 z-10 flex gap-2">
                     <span className="bg-hivis px-2 py-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-asphalt">
                       {p.category}
                     </span>
-                    <span className="border border-warm/20 px-2 py-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-warm/70">
+                    <span className="border border-warm/20 bg-asphalt/50 px-2 py-1 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-warm/80 backdrop-blur-sm">
                       {p.year}
                     </span>
-                  </div>
-                  <div className="absolute bottom-4 right-4 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-concrete">
-                    Photo à venir
                   </div>
                 </div>
                 <div className="flex flex-1 flex-col p-7">
@@ -69,6 +67,20 @@ export default function RealisationsPage() {
               </article>
             </Reveal>
           ))}
+        </div>
+      </section>
+
+      <section className="border-t border-warm/10 bg-asphalt py-16 lg:py-24">
+        <div className="container-x">
+          <p className="eyebrow mb-5">Avant / Après</p>
+          <h2 className="display mb-10 max-w-2xl text-warm text-3xl leading-[0.95] sm:text-4xl lg:text-5xl">
+            Glissez pour voir la transformation.
+          </h2>
+          <BeforeAfter
+            before={img.baBefore}
+            after={img.baAfter}
+            className="aspect-[16/9] w-full border border-warm/15"
+          />
         </div>
       </section>
 
