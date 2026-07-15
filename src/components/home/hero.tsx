@@ -18,14 +18,36 @@ const line = {
 
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [videoReady, setVideoReady] = useState(false);
   const [allowVideo, setAllowVideo] = useState(false);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    // Skip the video on very small screens too, to save mobile data.
-    setAllowVideo(!reduce);
+    // Respect data-saver (falls back to the poster image).
+    const conn = (navigator as unknown as { connection?: { saveData?: boolean } })
+      .connection;
+    const saveData = conn?.saveData === true;
+    setAllowVideo(!reduce && !saveData);
   }, []);
+
+  // Reliable mobile autoplay: keep it muted, and play only while the hero is
+  // on screen (starts it on iOS/Android, resumes when scrolled back, saves battery).
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!allowVideo || !v) return;
+    v.muted = true;
+    const tryPlay = () => v.play().catch(() => {});
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) tryPlay();
+        else v.pause();
+      },
+      { threshold: 0.15 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, [allowVideo]);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -48,7 +70,7 @@ export function Hero() {
       <motion.div style={{ y, scale }} className="absolute inset-0 z-0 will-change-transform">
         <Image
           src={img.heroPoster}
-          alt="Vue aérienne d'une entrée d'asphalte fraîchement pavée au coucher du soleil"
+          alt="Chantier de pavage d'asphalte Asphalte AAA au coucher du soleil"
           fill
           priority
           sizes="100vw"
@@ -56,6 +78,7 @@ export function Hero() {
         />
         {allowVideo && (
           <video
+            ref={videoRef}
             autoPlay
             muted
             loop
