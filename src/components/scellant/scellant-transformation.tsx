@@ -56,7 +56,9 @@ function Stage({
   // Function-form transforms (no keyframe offset arrays → no monotonic
   // constraints and no WAAPI edge cases at the first/last stage).
   const center = (i + 0.5) / n;
-  const half = 0.5 / n;
+  // Fade reaches 0 at the neighbouring stage's centre so windows overlap
+  // (linear crossfade, never a dead zone where every stage is invisible).
+  const half = 1 / n;
   const opacity = useTransform(progress, (p) => {
     if (i === 0 && p <= center) return 1;
     if (i === n - 1 && p >= center) return 1;

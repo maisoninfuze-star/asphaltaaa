@@ -133,7 +133,7 @@ export function ServiceGateway() {
               <span className="font-mono text-[0.62rem] uppercase tracking-[0.24em] text-hivis">
                 {p.option}
               </span>
-              <h2 className="display mt-3 text-warm text-[13vw] leading-[0.86] sm:text-6xl lg:text-[4.2vw]">
+              <h2 className="display mt-3 text-warm text-[10.5vw] leading-[0.86] sm:text-6xl lg:text-[4.2vw]">
                 {p.title[0]}
                 <br />
                 {p.title[1]}
