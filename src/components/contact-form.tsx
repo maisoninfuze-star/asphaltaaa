@@ -15,7 +15,13 @@ const schema = z.object({
 });
 type Values = z.infer<typeof schema>;
 
-export function ContactForm() {
+export function ContactForm({
+  division = "asphalte",
+  region,
+}: {
+  division?: "asphalte" | "scellant";
+  region?: string;
+} = {}) {
   const [sent, setSent] = useState(false);
   const {
     register,
@@ -27,7 +33,13 @@ export function ContactForm() {
     const res = await fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ kind: "contact", ...values }),
+      body: JSON.stringify({
+        kind: "contact",
+        division,
+        region,
+        sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
+        ...values,
+      }),
     });
     if (res.ok) setSent(true);
   }

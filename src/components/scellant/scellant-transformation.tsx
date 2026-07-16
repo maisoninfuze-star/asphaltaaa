@@ -53,15 +53,19 @@ function Stage({
   progress: MotionValue<number>;
   stage: (typeof scellantTransformation)[number];
 }) {
-  const seg = 1 / n;
-  const start = i * seg;
-  // Crossfade window around each stage's segment.
-  const opacity = useTransform(
-    progress,
-    [start - seg * 0.5, start, start + seg * 0.5, start + seg],
-    i === 0 ? [1, 1, 1, 0] : [0, 1, 1, 0]
-  );
-  const scale = useTransform(progress, [start - seg, start + seg], [1.08, 1]);
+  // Function-form transforms (no keyframe offset arrays → no monotonic
+  // constraints and no WAAPI edge cases at the first/last stage).
+  const center = (i + 0.5) / n;
+  const half = 0.5 / n;
+  const opacity = useTransform(progress, (p) => {
+    if (i === 0 && p <= center) return 1;
+    if (i === n - 1 && p >= center) return 1;
+    return Math.max(0, Math.min(1, 1 - Math.abs(p - center) / half));
+  });
+  const scale = useTransform(progress, (p) => {
+    const d = Math.max(-1, Math.min(1, (p - center) / (1 / n)));
+    return 1 + 0.06 * Math.abs(d);
+  });
 
   return (
     <motion.div style={{ opacity }} className="absolute inset-0">

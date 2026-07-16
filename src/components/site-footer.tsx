@@ -90,7 +90,7 @@ export function SiteFooter({
           <p className="label-mono mb-1">{serviceLabel}</p>
           {serviceLinks.map((s) => (
             <Link
-              key={s.href}
+              key={s.label}
               href={s.href}
               className="w-fit text-sm text-warm/70 transition-colors hover:text-hivis"
             >
