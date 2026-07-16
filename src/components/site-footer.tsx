@@ -1,9 +1,32 @@
 import Link from "next/link";
-import { nav, services, site } from "@/lib/site";
+import { nav as asphalteNav, services, site } from "@/lib/site";
 import { Logo } from "@/components/logo";
+import type { HeaderNavItem } from "@/components/site-header";
 
-export function SiteFooter() {
-  const year = 2025;
+const defaultServiceLinks: HeaderNavItem[] = services.slice(0, 6).map((s) => ({
+  label: s.title,
+  href: `/asphalte/services/${s.slug}`,
+}));
+
+/** Division-aware footer. Defaults to the Asphaltage complet division. */
+export function SiteFooter({
+  homeHref = "/asphalte",
+  navItems = [...asphalteNav],
+  serviceLinks = defaultServiceLinks,
+  serviceLabel = "Services",
+  ctaHref = "/asphalte/soumission",
+  ctaTitle = ["Bâtissons une", "surface qui dure."],
+  tagline = "Service d'asphalte complet — de l'excavation à la surface finie. La précision AAA.",
+}: {
+  homeHref?: string;
+  navItems?: HeaderNavItem[];
+  serviceLinks?: HeaderNavItem[];
+  serviceLabel?: string;
+  ctaHref?: string;
+  ctaTitle?: [string, string];
+  tagline?: string;
+} = {}) {
+  const year = new Date().getFullYear();
   return (
     <footer className="relative overflow-hidden border-t border-warm/10 bg-asphalt-2">
       {/* Big CTA band */}
@@ -12,9 +35,9 @@ export function SiteFooter() {
           <div>
             <p className="eyebrow mb-6">Prêt à commencer ?</p>
             <h2 className="display text-[13vw] leading-[0.86] text-warm sm:text-6xl lg:text-7xl">
-              Bâtissons une
+              {ctaTitle[0]}
               <br />
-              surface qui dure.
+              {ctaTitle[1]}
             </h2>
           </div>
           <div className="flex flex-col justify-end gap-4">
@@ -24,7 +47,7 @@ export function SiteFooter() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/soumission"
+                href={ctaHref}
                 className="bg-hivis px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm"
               >
                 Demander une soumission
@@ -43,17 +66,16 @@ export function SiteFooter() {
       {/* Link columns */}
       <div className="container-x grid gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
         <div className="flex flex-col gap-5">
-          <Logo className="h-9 w-auto" />
-          <p className="max-w-xs text-sm text-concrete">
-            Service d&apos;asphalte complet — de l&apos;excavation à la surface
-            finie. La précision AAA.
-          </p>
+          <Link href={homeHref} aria-label={`${site.name} — accueil`}>
+            <Logo className="h-9 w-auto" />
+          </Link>
+          <p className="max-w-xs text-sm text-concrete">{tagline}</p>
           <p className="label-mono">NEQ {site.neq}</p>
         </div>
 
         <nav className="flex flex-col gap-3" aria-label="Navigation pied de page">
           <p className="label-mono mb-1">Navigation</p>
-          {nav.map((n) => (
+          {navItems.map((n) => (
             <Link
               key={n.href}
               href={n.href}
@@ -65,14 +87,14 @@ export function SiteFooter() {
         </nav>
 
         <div className="flex flex-col gap-3">
-          <p className="label-mono mb-1">Services</p>
-          {services.slice(0, 6).map((s) => (
+          <p className="label-mono mb-1">{serviceLabel}</p>
+          {serviceLinks.map((s) => (
             <Link
-              key={s.slug}
-              href={`/services/${s.slug}`}
+              key={s.href}
+              href={s.href}
               className="w-fit text-sm text-warm/70 transition-colors hover:text-hivis"
             >
-              {s.title}
+              {s.label}
             </Link>
           ))}
         </div>

@@ -16,7 +16,7 @@ export function ServicesPreview() {
             </h2>
           </div>
           <Link
-            href="/services"
+            href="/asphalte/services"
             className="group flex shrink-0 items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-hivis"
           >
             Tous les services
@@ -32,7 +32,7 @@ export function ServicesPreview() {
               className="bg-asphalt"
             >
               <Link
-                href={`/services/${s.slug}`}
+                href={`/asphalte/services/${s.slug}`}
                 className="group relative flex min-h-[16rem] flex-col justify-between overflow-hidden p-8"
               >
                 {/* Image reveals on hover */}

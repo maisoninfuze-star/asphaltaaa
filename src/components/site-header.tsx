@@ -4,11 +4,36 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { nav, site } from "@/lib/site";
+import { nav as asphalteNav, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 
-export function SiteHeader() {
+export type HeaderNavItem = { label: string; href: string };
+
+/**
+ * Division-aware header. Defaults to the Asphaltage complet division; the
+ * Scellant division passes its own nav, home, CTA, context label and a region
+ * switcher node. Keeps one accessible mobile menu for both.
+ */
+export function SiteHeader({
+  homeHref = "/asphalte",
+  navItems = [...asphalteNav],
+  ctaHref = "/asphalte/soumission",
+  ctaLabel = "Soumission",
+  switchLabel = "Besoin d'un scellant ?",
+  switchHref = "/scellant",
+  contextLabel,
+  regionSwitcher,
+}: {
+  homeHref?: string;
+  navItems?: HeaderNavItem[];
+  ctaHref?: string;
+  ctaLabel?: string;
+  switchLabel?: string;
+  switchHref?: string;
+  contextLabel?: string;
+  regionSwitcher?: React.ReactNode;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -33,19 +58,27 @@ export function SiteHeader() {
         )}
       >
         <div className="container-x flex h-16 items-center justify-between lg:h-20">
-          <Link
-            href="/"
-            aria-label={`${site.name} — accueil`}
-            className="relative z-10 flex items-center gap-3"
-          >
-            <Logo className="h-8 w-auto" />
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link
+              href={homeHref}
+              aria-label={`${site.name} — accueil`}
+              className="relative z-10 flex items-center gap-3"
+            >
+              <Logo className="h-8 w-auto" />
+            </Link>
+            {contextLabel && (
+              <span className="hidden font-mono text-[0.62rem] uppercase tracking-[0.18em] text-hivis md:inline-block">
+                {contextLabel}
+              </span>
+            )}
+            {regionSwitcher}
+          </div>
 
-          <nav className="hidden items-center gap-8 lg:flex">
-            {nav.map((item) => {
+          <nav className="hidden items-center gap-8 xl:flex">
+            {navItems.map((item) => {
               const active =
-                item.href === "/"
-                  ? pathname === "/"
+                item.href === homeHref
+                  ? pathname === homeHref
                   : pathname.startsWith(item.href);
               return (
                 <Link
@@ -63,44 +96,35 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-3">
+            <Link
+              href={switchHref}
+              className="hidden font-mono text-[0.62rem] uppercase tracking-[0.16em] text-concrete transition-colors hover:text-hivis lg:inline-block"
+            >
+              {switchLabel}
+            </Link>
             <a
               href={site.phoneHref}
-              className="hidden font-mono text-xs tracking-[0.12em] text-warm/70 transition-colors hover:text-hivis md:block"
+              className="hidden font-mono text-xs tracking-[0.12em] text-warm/70 transition-colors hover:text-hivis 2xl:block"
             >
               {site.phone}
             </a>
             <Link
-              href="/soumission"
+              href={ctaHref}
               className="hidden bg-hivis px-5 py-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm sm:inline-block"
             >
-              Soumission
+              {ctaLabel}
             </Link>
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
-              className="relative z-[60] flex h-11 w-11 items-center justify-center lg:hidden"
+              className="relative z-[60] flex h-11 w-11 items-center justify-center xl:hidden"
             >
               <span className="sr-only">Menu</span>
               <div className="flex flex-col gap-[5px]">
-                <span
-                  className={cn(
-                    "block h-[2px] w-6 bg-warm transition-all duration-300",
-                    open && "translate-y-[7px] rotate-45"
-                  )}
-                />
-                <span
-                  className={cn(
-                    "block h-[2px] w-6 bg-warm transition-all duration-300",
-                    open && "opacity-0"
-                  )}
-                />
-                <span
-                  className={cn(
-                    "block h-[2px] w-6 bg-warm transition-all duration-300",
-                    open && "-translate-y-[7px] -rotate-45"
-                  )}
-                />
+                <span className={cn("block h-[2px] w-6 bg-warm transition-all duration-300", open && "translate-y-[7px] rotate-45")} />
+                <span className={cn("block h-[2px] w-6 bg-warm transition-all duration-300", open && "opacity-0")} />
+                <span className={cn("block h-[2px] w-6 bg-warm transition-all duration-300", open && "-translate-y-[7px] -rotate-45")} />
               </div>
             </button>
           </div>
@@ -114,10 +138,15 @@ export function SiteHeader() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col bg-asphalt tex-asphalt lg:hidden"
+            className="fixed inset-0 z-40 flex flex-col bg-asphalt tex-asphalt xl:hidden"
           >
-            <nav className="mt-24 flex flex-1 flex-col justify-center gap-1 px-6">
-              {nav.map((item, i) => (
+            {contextLabel && (
+              <p className="container-x mt-24 font-mono text-xs uppercase tracking-[0.22em] text-hivis">
+                {contextLabel}
+              </p>
+            )}
+            <nav className={cn("flex flex-1 flex-col justify-center gap-1 px-6", !contextLabel && "mt-24")}>
+              {navItems.map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, y: 24 }}
@@ -135,13 +164,19 @@ export function SiteHeader() {
                   </Link>
                 </motion.div>
               ))}
+              <Link
+                href={switchHref}
+                className="mt-6 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-hivis"
+              >
+                {switchLabel} →
+              </Link>
             </nav>
             <div className="flex items-center justify-between gap-4 border-t border-warm/10 px-6 py-6">
               <a href={site.phoneHref} className="font-mono text-sm text-warm">
                 {site.phone}
               </a>
               <Link
-                href="/soumission"
+                href={ctaHref}
                 className="bg-hivis px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] text-asphalt"
               >
                 Soumission gratuite

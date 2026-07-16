@@ -38,7 +38,7 @@ export default function ServicesPage() {
                 {list.map((s) => (
                   <Reveal key={s.slug} className="bg-asphalt">
                     <Link
-                      href={`/services/${s.slug}`}
+                      href={`/asphalte/services/${s.slug}`}
                       className="group flex h-full flex-col justify-between gap-8 p-8 transition-colors duration-500 hover:bg-asphalt-2 lg:p-10"
                     >
                       <div>

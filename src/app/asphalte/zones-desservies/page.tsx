@@ -48,7 +48,7 @@ export default function ZonesPage() {
                 </p>
               </div>
               <Link
-                href="/soumission"
+                href="/asphalte/soumission"
                 className="w-fit font-mono text-xs uppercase tracking-[0.18em] text-warm/60 transition-colors group-hover:text-hivis"
               >
                 Soumission →

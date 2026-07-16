@@ -31,13 +31,13 @@ export const site = {
 } as const;
 
 export const nav = [
-  { label: "Accueil", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Réalisations", href: "/realisations" },
-  { label: "À propos", href: "/a-propos" },
-  { label: "Zones desservies", href: "/zones" },
-  { label: "Emplois", href: "/emplois" },
-  { label: "Contact", href: "/contact" },
+  { label: "Accueil", href: "/asphalte" },
+  { label: "Services", href: "/asphalte/services" },
+  { label: "Réalisations", href: "/asphalte/realisations" },
+  { label: "À propos", href: "/asphalte/a-propos" },
+  { label: "Zones desservies", href: "/asphalte/zones-desservies" },
+  { label: "Emplois", href: "/asphalte/emplois" },
+  { label: "Contact", href: "/asphalte/contact" },
 ] as const;
 
 /** The narrative stages of a full asphalt project — powers the cinematic hero. */

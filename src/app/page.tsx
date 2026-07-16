@@ -1,29 +1,18 @@
-import { Hero } from "@/components/home/hero";
-import { Marquee } from "@/components/marquee";
-import { Manifesto } from "@/components/home/manifesto";
-import { ScrollStory } from "@/components/home/scroll-story";
-import { ServicesPreview } from "@/components/home/services-preview";
-import { Stats } from "@/components/home/stats";
-import { Process } from "@/components/home/process";
-import { Equipment } from "@/components/home/equipment";
-import { BeforeAfterSection } from "@/components/home/before-after-section";
-import { ServiceAreas } from "@/components/home/service-areas";
-import { Testimonials } from "@/components/home/testimonials";
+import Link from "next/link";
 
-export default function Home() {
+// Phase 1 placeholder gateway — replaced by the cinematic ServiceGateway in Phase 2.
+export default function GatewayPage() {
   return (
-    <>
-      <Hero />
-      <Marquee />
-      <Manifesto />
-      <ScrollStory />
-      <ServicesPreview />
-      <Stats />
-      <BeforeAfterSection />
-      <Process />
-      <Equipment />
-      <ServiceAreas />
-      <Testimonials />
-    </>
+    <main id="contenu" className="flex min-h-[100svh] flex-col items-center justify-center gap-8 bg-asphalt px-6 text-center">
+      <h1 className="display text-warm text-5xl">Quel service recherchez-vous ?</h1>
+      <div className="flex flex-col gap-4 sm:flex-row">
+        <Link href="/asphalte" className="bg-hivis px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-asphalt">
+          Asphaltage complet
+        </Link>
+        <Link href="/scellant" className="border border-warm/30 px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-warm">
+          Scellant d&apos;asphalte
+        </Link>
+      </div>
+    </main>
   );
 }

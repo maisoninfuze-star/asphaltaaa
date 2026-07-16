@@ -19,7 +19,7 @@ export default function NotFound() {
           Retour à l&apos;accueil
         </Link>
         <Link
-          href="/soumission"
+          href="/asphalte/soumission"
           className="border border-warm/25 px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] text-warm transition-colors hover:border-hivis hover:text-hivis"
         >
           Soumission

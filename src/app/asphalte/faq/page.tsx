@@ -48,7 +48,7 @@ export default function FaqPage() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href="/asphalte/contact"
               className="border border-warm/25 px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] text-warm transition-colors hover:border-hivis hover:text-hivis"
             >
               Nous joindre

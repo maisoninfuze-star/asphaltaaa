@@ -104,7 +104,7 @@ export default async function ServiceDetail({
                 la journée même.
               </p>
               <Link
-                href="/soumission"
+                href="/asphalte/soumission"
                 className="mt-6 flex w-full items-center justify-center gap-2 bg-hivis px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm"
               >
                 Demander une soumission
@@ -123,7 +123,7 @@ export default async function ServiceDetail({
       {/* Next service */}
       <section className="border-t border-warm/10 bg-asphalt-2">
         <Link
-          href={`/services/${next.slug}`}
+          href={`/asphalte/services/${next.slug}`}
           className="group container-x flex items-center justify-between py-12"
         >
           <div>

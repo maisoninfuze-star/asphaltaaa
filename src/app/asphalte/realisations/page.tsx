@@ -43,7 +43,7 @@ export default function RealisationsPage() {
             Votre projet pourrait être le prochain.
           </h2>
           <Link
-            href="/soumission"
+            href="/asphalte/soumission"
             className="bg-hivis px-7 py-4 font-mono text-xs uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm"
           >
             Demander une soumission

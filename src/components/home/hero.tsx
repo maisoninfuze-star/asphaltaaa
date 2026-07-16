@@ -165,7 +165,7 @@ export function Hero() {
           >
             <Magnetic>
               <Link
-                href="/soumission"
+                href="/asphalte/soumission"
                 className="group inline-flex items-center gap-2 bg-hivis px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm"
               >
                 Soumission gratuite
@@ -176,7 +176,7 @@ export function Hero() {
             </Magnetic>
             <Magnetic strength={0.25}>
               <Link
-                href="/services"
+                href="/asphalte/services"
                 className="border border-warm/30 bg-asphalt/20 px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-warm backdrop-blur-sm transition-colors hover:border-hivis hover:text-hivis"
               >
                 Nos services

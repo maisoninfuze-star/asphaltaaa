@@ -20,7 +20,7 @@ export function ServiceAreas() {
             solution.
           </p>
           <Link
-            href="/zones"
+            href="/asphalte/zones-desservies"
             className="mt-8 inline-flex items-center gap-2 border border-warm/25 px-6 py-4 font-mono text-xs uppercase tracking-[0.18em] text-warm transition-colors hover:border-hivis hover:text-hivis"
           >
             Voir les zones
