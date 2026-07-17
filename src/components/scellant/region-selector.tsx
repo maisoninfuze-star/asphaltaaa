@@ -55,8 +55,8 @@ export function RegionSelector() {
                 className="group relative flex h-full min-h-[26rem] flex-col justify-end overflow-hidden border border-warm/12 p-7"
               >
                 <Image
-                  src={loc.heroMedia.poster}
-                  alt={`Scellant d'asphalte — ${loc.name}`}
+                  src={loc.cityPhoto}
+                  alt={`${loc.name} — ${loc.regionLabel}`}
                   fill
                   sizes="(max-width:768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-[1.4s] ease-out group-hover:scale-105"

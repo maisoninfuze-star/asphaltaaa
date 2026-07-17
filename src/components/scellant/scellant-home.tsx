@@ -264,13 +264,22 @@ export function ScellantHome({ location }: { location: ScellantLocation }) {
               Confirmer mon secteur →
             </Link>
           </div>
-          <div className="grid grid-cols-2 gap-px overflow-hidden border border-warm/10 bg-warm/10 sm:grid-cols-3">
-            {location.municipalities.map((m) => (
-              <div key={m} className="bg-asphalt px-4 py-5 text-center">
-                <span className="text-sm text-warm/80">{m}</span>
+          <Reveal>
+            <div className="relative overflow-hidden border border-warm/12">
+              <div className="relative aspect-[4/3] w-full">
+                <Image src={location.cityPhoto} alt={`${location.name} — ${location.regionLabel}`} fill sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
+                <div aria-hidden className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(11,11,13,0.15), rgba(11,11,13,0.85))" }} />
+                <span className="absolute left-4 top-4 bg-hivis px-2 py-1 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-asphalt">{location.name}</span>
               </div>
-            ))}
-          </div>
+              <div className="grid grid-cols-2 gap-px overflow-hidden border-t border-warm/10 bg-warm/10 sm:grid-cols-3">
+                {location.municipalities.map((m) => (
+                  <div key={m} className="bg-asphalt px-4 py-4 text-center">
+                    <span className="text-sm text-warm/80">{m}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 

@@ -34,6 +34,8 @@ export type ScellantLocation = {
   municipalities: string[];
   municipalitiesNote: string;
   serviceAreaDescription: string;
+  /** Real regional identity photo (supplied by the owner). */
+  cityPhoto: string;
   heroMedia: { poster: string; video?: string };
   gallery: ScellantGalleryItem[];
   testimonials: typeof scellantTestimonials;
@@ -79,6 +81,7 @@ export const scellantLocations: ScellantLocation[] = [
     municipalitiesNote: "Secteurs desservis — à confirmer avec le propriétaire.",
     serviceAreaDescription:
       "Service de scellant et d'entretien d'asphalte pour les propriétés résidentielles et, selon le secteur, commerciales de la Rive-Sud de Montréal.",
+    cityPhoto: "/assets/regions/montreal.jpg",
     heroMedia: { poster: scellantImg.regionHero("montreal"), video: scellantImg.heroVideo },
     gallery: galleryFor("Rive-Sud"),
     testimonials: scellantTestimonials,
@@ -115,6 +118,7 @@ export const scellantLocations: ScellantLocation[] = [
     municipalitiesNote: "Secteurs desservis — à confirmer avec le propriétaire.",
     serviceAreaDescription:
       "Service de scellant et d'entretien d'asphalte pour les propriétés de la région de Québec, sur les deux rives.",
+    cityPhoto: "/assets/regions/quebec.jpg",
     heroMedia: { poster: scellantImg.regionHero("quebec"), video: scellantImg.heroVideo },
     gallery: galleryFor("Québec"),
     testimonials: scellantTestimonials,
@@ -151,6 +155,7 @@ export const scellantLocations: ScellantLocation[] = [
     municipalitiesNote: "Secteurs desservis — à confirmer avec le propriétaire.",
     serviceAreaDescription:
       "Service de scellant et d'entretien d'asphalte pour les propriétés de Rimouski et du Bas-Saint-Laurent.",
+    cityPhoto: "/assets/regions/rimouski.jpg",
     heroMedia: { poster: scellantImg.regionHero("rimouski"), video: scellantImg.heroVideo },
     gallery: galleryFor("Bas-Saint-Laurent"),
     testimonials: scellantTestimonials,
