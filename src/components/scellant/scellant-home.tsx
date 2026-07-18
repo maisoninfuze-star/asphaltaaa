@@ -87,7 +87,7 @@ export function ScellantHome({ location }: { location: ScellantLocation }) {
           </h2>
           <p className="mt-6 max-w-2xl text-concrete-light">
             Le scellant protège et ravive une surface saine, sans refaire toute la surface. Si votre asphalte est
-            endommagé en profondeur, un asphaltage complet est plus approprié. Voici comment choisir.
+            endommagé en profondeur, une nouvelle couche d'asphalte peut être recommandée. Voici comment choisir.
           </p>
           <div className="mt-12 grid gap-6 lg:grid-cols-2">
             {[serviceComparison.scellant, serviceComparison.asphalte].map((c, idx) => (
@@ -148,21 +148,51 @@ export function ScellantHome({ location }: { location: ScellantLocation }) {
         </div>
       </section>
 
+      {/* Educational warning — cheap DIY products (NOT an AAA project) */}
+      <section className="border-t border-warm/10 bg-asphalt py-24 lg:py-32">
+        <div className="container-x grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="eyebrow mb-5">À savoir</p>
+            <h2 className="display text-warm text-3xl leading-[0.95] sm:text-4xl lg:text-5xl">
+              Pourquoi éviter les produits bon marché appliqués soi-même&nbsp;?
+            </h2>
+            <p className="mt-6 max-w-lg text-concrete-light">
+              Certains scellants vendus en magasin peuvent former une couche
+              fragile qui décolle rapidement lorsqu&apos;ils sont mal choisis ou
+              mal appliqués. Une préparation adaptée, un produit professionnel et
+              une application uniforme font toute la différence.
+            </p>
+          </div>
+          <Reveal>
+            <figure className="relative overflow-hidden border border-warm/15">
+              <div className="relative aspect-[4/3]">
+                <Image src={scellantImg.peeling} alt="Exemple d'un scellant bon marché qui décolle de la surface" fill sizes="(max-width:1024px) 100vw, 45vw" className="object-cover" />
+              </div>
+              <figcaption className="border-t border-warm/10 bg-asphalt-2 px-4 py-3 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-concrete">
+                Exemple de détérioration — pas un projet Asphalte AAA
+              </figcaption>
+            </figure>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Before / after */}
       <section className="border-t border-warm/10 bg-asphalt-2 py-24 lg:py-32">
         <div className="container-x grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
           <div>
             <p className="eyebrow mb-5">Avant / Après</p>
             <h2 className="display text-warm text-4xl leading-[0.95] sm:text-5xl">
-              D&apos;une surface ternie à un fini profond.
+              Une entrée qui retrouve sa protection.
             </h2>
             <p className="mt-6 max-w-md text-concrete-light">
-              Faites glisser la poignée pour comparer une surface avant et après le scellant.
+              Glissez pour comparer une surface vieillissante avec le résultat
+              obtenu après la préparation, les réparations nécessaires et
+              l&apos;application uniforme du scellant.
             </p>
             <p className="mt-6 font-mono text-xs text-concrete">← Glissez la poignée →</p>
           </div>
           <Reveal>
-            <BeforeAfter before={scellantImg.baFaded} after={scellantImg.baSealed} className="aspect-[16/10] w-full border border-warm/15" />
+            <BeforeAfter before={scellantImg.baFaded} after={scellantImg.baSealed} beforeLabel="Avant — Surface vieillissante" afterLabel="Après — Surface protégée" className="aspect-[4/5] w-full max-w-md border border-warm/15" />
           </Reveal>
         </div>
       </section>
@@ -302,7 +332,7 @@ export function ScellantHome({ location }: { location: ScellantLocation }) {
             Prêt à redonner vie à votre asphalte&nbsp;?
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-concrete-light">
-            Service de scellant à {location.name}. On revient rapidement avec un prix clair, souvent la journée même.
+            Service de scellant à {location.name}. On revient rapidement avec un prix clair.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
             <Link href={soumission} className="bg-hivis px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-asphalt transition-colors hover:bg-warm">

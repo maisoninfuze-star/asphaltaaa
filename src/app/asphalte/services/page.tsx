@@ -5,9 +5,9 @@ import { PageHeader } from "@/components/page-header";
 import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
-  title: "Services d'asphalte complets",
+  title: "Pavage et réparation d'asphalte",
   description:
-    "Excavation, nivellement, fondation, pavage, resurfaçage, réparations, scellant, lavage à pression et lignage. Le service complet, du terrain brut à la surface finie.",
+    "Excavation, nivellement, fondation de pierre, pavage d'asphalte, resurfaçage, réparation des fissures et des trous. De la pose à la réparation, un travail propre et durable.",
 };
 
 const categories = ["Terrassement", "Installation", "Réparation", "Entretien"] as const;
@@ -16,10 +16,10 @@ export default function ServicesPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Nos services"
+        eyebrow="Pose et pavage"
         index="/ 01"
         title="Du terrain brut à la surface finie."
-        intro="On ne fait pas que du scellant. Asphalte AAA prend en charge chaque étape d'un projet d'asphalte — avec la même rigueur du premier coup de pelle à la dernière ligne peinte."
+        intro="De l'excavation à la pose d'une nouvelle couche d'asphalte, en passant par la réparation des fissures et des trous, Asphalte AAA prend en charge chaque étape avec la même rigueur. Pour l'entretien et le scellant d'une surface déjà en place, voyez notre division entretien et protection."
       />
 
       {categories.map((cat) => {

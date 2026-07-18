@@ -2,9 +2,12 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { captureLeadContext } from "@/lib/lead-context";
 
 export function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    // First-touch UTM / referrer capture for CRM routing (once per session).
+    captureLeadContext();
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 

@@ -16,10 +16,10 @@ export function scellantNav(slug: string): HeaderNavItem[] {
 export function scellantServiceLinks(slug: string): HeaderNavItem[] {
   const base = `/scellant/${slug}`;
   return [
-    { label: "Scellant d'asphalte", href: `${base}/services` },
-    { label: "Lavage à pression", href: `${base}/services` },
-    { label: "Préparation de surface", href: `${base}/services` },
-    { label: "Entretien résidentiel", href: `${base}/services` },
-    { label: "Entretien commercial", href: `${base}/services` },
+    { label: "Application de scellant", href: `${base}/services` },
+    { label: "Réparation des fissures", href: `${base}/services` },
+    { label: "Réparation des trous", href: `${base}/services` },
+    { label: "Nettoyage à sec", href: `${base}/services` },
+    { label: "Protection des surfaces", href: `${base}/services` },
   ];
 }

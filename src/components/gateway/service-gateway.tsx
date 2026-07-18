@@ -22,9 +22,9 @@ const panels: {
   {
     key: "asphalte",
     option: "Option 01",
-    title: ["Asphaltage", "complet"],
+    title: ["Pavage", "et asphalte"],
     line: "Du terrain brut jusqu'à la surface finie.",
-    cta: "Découvrir l'asphaltage complet",
+    cta: "Découvrir le pavage",
     href: "/asphalte",
     poster: "/assets/generated/hero-alt1.jpg",
     video: "/assets/generated/hero-alt1.mp4",

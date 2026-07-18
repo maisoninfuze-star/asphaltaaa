@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ location:
   if (!loc) return {};
   return {
     title: `Services de scellant — ${loc.name}`,
-    description: `Scellant d'asphalte, lavage à pression, préparation de surface et entretien à ${loc.name}.`,
+    description: `Scellant d'asphalte, réparation des fissures, nettoyage à sec et entretien à ${loc.name}.`,
     alternates: { canonical: `https://asphalteaaa.com/scellant/${loc.slug}/services` },
   };
 }
@@ -58,7 +58,7 @@ export default async function ScellantServicesPage({ params }: { params: Promise
 
       <section className="border-t border-warm/10 bg-asphalt-2 py-20 lg:py-28">
         <div className="container-x">
-          <p className="eyebrow mb-5">Scellant ou asphaltage&nbsp;?</p>
+          <p className="eyebrow mb-5">Entretien ou pavage&nbsp;?</p>
           <h2 className="display max-w-3xl text-warm text-3xl leading-[0.95] sm:text-4xl">
             Le bon service selon l&apos;état de votre surface.
           </h2>

@@ -12,18 +12,37 @@ export const heroVariants = {
 
 export const activeHero: keyof typeof heroVariants = "paver";
 
+const P = "/assets/projects";
+
+/** Real Asphalte AAA project photos (HD, phone UI removed). */
+export const realImg = {
+  drivewayBlue: `${P}/driveway-blue-house.jpg`,
+  drivewayBrick: `${P}/driveway-brick-houses.jpg`,
+  drivewayFaded: `${P}/driveway-faded-worker.jpg`,
+  whiteHouse: `${P}/project-white-house.jpg`,
+  baBefore: `${P}/before-after-before.jpg`,
+  baAfter: `${P}/before-after-after.jpg`,
+  blowers: `${P}/process-blowers.jpg`,
+  sprayEstate: `${P}/process-spray-estate.jpg`,
+  peeling: `${P}/warning-peeling.jpg`,
+  heroVideo: `${P}/video/hero-driveway.mp4`,
+  blowersVideo: `${P}/video/process-blowers.mp4`,
+  sprayVideo: `${P}/video/process-spray.mp4`,
+};
+
 export const img = {
-  heroAerial: `${B}/hero-aerial.jpg`,
-  heroVideo: heroVariants[activeHero].video,
-  heroPoster: heroVariants[activeHero].poster,
+  heroAerial: realImg.drivewayBlue,
+  // Real completed Asphalte AAA driveway (photo + fal.ai cinematic video).
+  heroVideo: realImg.heroVideo,
+  heroPoster: realImg.drivewayBlue,
   storyPaver: `${B}/story-paver.jpg`,
-  baBefore: `${B}/ba-before.jpg`,
-  baAfter: `${B}/ba-after.jpg`,
+  baBefore: realImg.baBefore,
+  baAfter: realImg.baAfter,
   equipRoller: `${B}/equip-roller.jpg`,
   equipExcavator: `${B}/equip-excavator.jpg`,
   pavage: `${B}/svc-pavage.jpg`,
-  residential: `${B}/proj-residential.jpg`,
-  commercial: `${B}/proj-commercial.jpg`,
+  residential: realImg.drivewayBlue,
+  commercial: realImg.drivewayBrick,
 };
 
 export const serviceImg: Record<string, string> = {
@@ -31,18 +50,17 @@ export const serviceImg: Record<string, string> = {
   nivellement: `${B}/svc-fondation.jpg`,
   fondation: `${B}/svc-fondation.jpg`,
   pavage: `${B}/svc-pavage.jpg`,
-  resurfacage: `${B}/proj-residential.jpg`,
-  reparations: `${B}/svc-reparations.jpg`,
-  scellant: `${B}/svc-scellant.jpg`,
-  "lavage-pression": `${B}/svc-lavage.jpg`,
-  lignage: `${B}/proj-commercial.jpg`,
+  resurfacage: realImg.drivewayBrick,
+  "reparation-fissures": `${B}/svc-reparations.jpg`,
+  "reparation-trous": `${B}/svc-reparations.jpg`,
 };
 
+/** Fallback map (projects now carry their own `image`; kept for safety). */
 export const projectImg: Record<string, string> = {
-  "entree-residentielle-brossard": `${B}/proj-residential.jpg`,
-  "stationnement-commercial-longueuil": `${B}/proj-commercial.jpg`,
-  "resurfacage-chicoutimi": `${B}/ba-after.jpg`,
-  "reparations-thetford": `${B}/svc-reparations.jpg`,
+  "entree-residentielle-scellee": realImg.drivewayBlue,
+  "entree-double-protegee": realImg.drivewayBrick,
+  "entree-maison-blanche": realImg.whiteHouse,
+  "grande-propriete-entretien": realImg.sprayEstate,
 };
 
 export const equipment = [

@@ -9,14 +9,14 @@ export function BeforeAfterSection() {
         <div>
           <p className="eyebrow mb-5">Avant / Après</p>
           <h2 className="display text-warm text-4xl leading-[0.95] sm:text-5xl lg:text-6xl">
-            La différence,
+            Une entrée qui
             <br />
-            glissez pour voir.
+            retrouve sa protection.
           </h2>
           <p className="mt-6 max-w-md text-concrete-light">
-            D&apos;une surface fissurée et affaissée à un fini lisse, étanche et
-            durable. Faites glisser la poignée pour comparer une vraie
-            transformation.
+            Glissez pour comparer une surface vieillissante avec le résultat
+            obtenu après la préparation, les réparations nécessaires et
+            l&apos;application uniforme du scellant.
           </p>
           <p className="mt-6 font-mono text-xs text-concrete">
             ← Glissez la poignée →
@@ -27,6 +27,8 @@ export function BeforeAfterSection() {
           <BeforeAfter
             before={img.baBefore}
             after={img.baAfter}
+            beforeLabel="Avant — Surface vieillissante"
+            afterLabel="Après — Surface protégée"
             className="aspect-[16/10] w-full border border-warm/15"
           />
         </Reveal>

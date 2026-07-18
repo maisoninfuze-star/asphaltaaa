@@ -20,8 +20,7 @@ const items = [
   "Resurfaçage",
   "Réparations",
   "Scellant",
-  "Lavage à pression",
-  "Lignage",
+  "Réparation des fissures",
   "Drainage",
 ];
 

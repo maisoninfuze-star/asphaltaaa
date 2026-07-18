@@ -11,7 +11,7 @@ import { Logo } from "@/components/logo";
 export type HeaderNavItem = { label: string; href: string };
 
 /**
- * Division-aware header. Defaults to the Asphaltage complet division; the
+ * Division-aware header. Defaults to the Pavage et asphalte division; the
  * Scellant division passes its own nav, home, CTA, context label and a region
  * switcher node. Keeps one accessible mobile menu for both.
  */

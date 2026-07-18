@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
+import { getLeadContext } from "@/lib/lead-context";
 import type { ScellantLocation } from "@/lib/content/scellant-locations";
 
 const clientTypes = ["Résidentiel", "Commercial"] as const;
@@ -20,7 +21,7 @@ const conditions = [
   "Dommages importants",
   "Je ne suis pas certain",
 ] as const;
-const wanted = ["Scellant d'asphalte", "Lavage à pression", "Les deux", "Je ne suis pas certain"] as const;
+const wanted = ["Scellant d'asphalte", "Réparation de fissures", "Réparation de trous", "Je ne suis pas certain"] as const;
 const timelines = ["Dès que possible", "Cette saison", "L'an prochain", "Je m'informe"] as const;
 
 const schema = z.object({
@@ -35,6 +36,7 @@ const schema = z.object({
   phone: z.string().min(6, "Entrez un téléphone valide"),
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().max(2000).optional(),
+  consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
 });
 type Values = z.infer<typeof schema>;
 
@@ -59,7 +61,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { dimensions: "", message: "" },
+    defaultValues: { dimensions: "", message: "", consent: false },
     mode: "onTouched",
   });
 
@@ -91,6 +93,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
         message: values.message,
         division: "scellant",
         region: location.name,
+        consent: values.consent,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         meta: {
           locationSlug: location.slug,
@@ -102,6 +105,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
           service: values.service,
           timeline: values.timeline,
           address: values.address,
+          ...getLeadContext(),
         },
       }),
     });
@@ -167,10 +171,10 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
                   {majorDamage && (
                     <div className="border border-hivis/40 bg-hivis/[0.06] p-5">
                       <p className="text-sm text-warm">
-                        Des dommages importants peuvent nécessiter un asphaltage complet plutôt qu&apos;un scellant.
+                        Des dommages importants peuvent nécessiter un pavage plutôt qu&apos;un scellant.
                       </p>
                       <Link href="/asphalte/soumission" className="mt-3 inline-flex items-center gap-2 font-mono text-[0.66rem] uppercase tracking-[0.16em] text-hivis hover:underline">
-                        Voir la soumission asphaltage complet →
+                        Voir la soumission de pavage →
                       </Link>
                     </div>
                   )}
@@ -206,9 +210,11 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
                   <Field label="Message (optionnel)">
                     <Textarea rows={3} placeholder="Détails utiles, photos à suivre par courriel, etc." {...register("message")} />
                   </Field>
-                  <p className="font-mono text-[0.58rem] leading-relaxed text-concrete">
-                    En envoyant ce formulaire, vous acceptez d&apos;être contacté au sujet de votre demande.
-                  </p>
+                  <label className="flex items-start gap-3 text-sm text-concrete-light">
+                    <input type="checkbox" {...register("consent")} className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-hivis)]" />
+                    <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
+                  </label>
+                  {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
                 </div>
               )}
             </motion.div>

@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Gateway
   const gateway = [{ url: base, priority: 1, changeFrequency: "monthly" as const }];
 
-  // Asphaltage complet division
+  // Pavage et asphalte division
   const asphalteRoutes = [
     "/asphalte",
     ...nav.map((n) => n.href).filter((h) => h !== "/asphalte"),

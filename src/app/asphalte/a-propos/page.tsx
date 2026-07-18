@@ -40,15 +40,15 @@ export default function AboutPage() {
             <p className="eyebrow mb-6">Notre histoire</p>
             <div className="space-y-6 text-lg text-concrete-light">
               <p>
-                Asphalte AAA est né d&apos;une conviction simple : protéger,
-                embellir et prolonger la vie des surfaces extérieures, en faisant
-                le travail correctement.
+                Asphalte AAA est née d&apos;une conviction simple : une surface
+                durable commence par une préparation rigoureuse et se conserve
+                grâce à un entretien adapté.
               </p>
               <p>
-                On a commencé par le scellant et le lavage à pression. Aujourd&apos;hui,
-                on prend en charge le service complet — excavation, fondation,
-                pavage, réparations et entretien — du terrain brut jusqu&apos;à la
-                surface finie.
+                De la pose d&apos;une nouvelle couche d&apos;asphalte à la réparation
+                des fissures, des trous et à l&apos;application de scellant, notre
+                équipe propose des solutions adaptées à l&apos;état réel de chaque
+                surface.
               </p>
               <p>
                 Une équipe rapide, travaillante et surtout humaine, qui traite

@@ -90,7 +90,7 @@ export function RegionSelector() {
             href="/asphalte"
             className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-concrete transition-colors hover:text-hivis"
           >
-            Besoin d&apos;un asphaltage complet ? Voir la division →
+            Besoin d&apos;un pavage ? Voir la division →
           </Link>
         </div>
       </div>

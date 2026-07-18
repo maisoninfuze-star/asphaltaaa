@@ -8,7 +8,7 @@ const defaultServiceLinks: HeaderNavItem[] = services.slice(0, 6).map((s) => ({
   href: `/asphalte/services/${s.slug}`,
 }));
 
-/** Division-aware footer. Defaults to the Asphaltage complet division. */
+/** Division-aware footer. Defaults to the Pavage et asphalte division. */
 export function SiteFooter({
   homeHref = "/asphalte",
   navItems = [...asphalteNav],
@@ -42,8 +42,7 @@ export function SiteFooter({
           </div>
           <div className="flex flex-col justify-end gap-4">
             <p className="max-w-sm text-concrete-light">
-              Soumission gratuite, détaillée et sans surprise. On répond
-              rapidement — souvent la journée même.
+              Soumission gratuite, détaillée et sans surprise. On répond rapidement.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link

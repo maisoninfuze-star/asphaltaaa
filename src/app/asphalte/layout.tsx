@@ -1,7 +1,7 @@
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
-/** Asphaltage complet division chrome. */
+/** Pavage et asphalte division chrome. */
 export default function AsphalteLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {

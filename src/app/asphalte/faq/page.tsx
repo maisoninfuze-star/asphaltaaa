@@ -43,8 +43,7 @@ export default function FaqPage() {
       <section className="border-t border-warm/10 bg-asphalt-2 py-16 lg:py-20">
         <div className="container-x flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <p className="max-w-xl text-lg text-concrete-light">
-            Vous ne trouvez pas votre réponse ? On répond rapidement, souvent la
-            journée même.
+            Vous ne trouvez pas votre réponse ? On répond rapidement.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link

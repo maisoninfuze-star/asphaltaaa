@@ -30,7 +30,7 @@ export default async function ScellantSoumissionPage({ params }: { params: Promi
         eyebrow="Soumission gratuite"
         index="Scellant"
         title="Votre soumission, en quelques étapes."
-        intro={`Quelques questions rapides. On revient avec un prix clair pour votre projet de scellant à ${loc.name} — souvent la journée même.`}
+        intro={`Quelques questions rapides. On revient avec un prix clair pour votre projet de scellant à ${loc.name}.`}
       />
       <section className="bg-asphalt pb-24 lg:pb-32">
         <div className="container-x grid gap-12 lg:grid-cols-[1fr_1.5fr]">
@@ -42,7 +42,7 @@ export default async function ScellantSoumissionPage({ params }: { params: Promi
               {loc.phone}
             </a>
             <ul className="mt-8 space-y-3">
-              {["Soumission gratuite et sans engagement", "Réponse rapide, souvent la journée même", "Prix clair, sans surprise"].map((t, i) => (
+              {["Soumission gratuite et sans engagement", "Réponse rapide", "Prix clair, sans surprise"].map((t, i) => (
                 <li key={t} className="flex items-start gap-3 text-concrete-light">
                   <span className="font-mono text-xs text-hivis">0{i + 1}</span>
                   {t}

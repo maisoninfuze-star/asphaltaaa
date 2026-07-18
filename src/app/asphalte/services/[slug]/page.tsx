@@ -100,8 +100,7 @@ export default async function ServiceDetail({
                 Un projet de {s.title.toLowerCase()} ?
               </h2>
               <p className="mt-3 text-sm text-concrete-light">
-                Décrivez-nous votre besoin — on vous répond rapidement, souvent
-                la journée même.
+                Décrivez-nous votre besoin — on vous répond rapidement.
               </p>
               <Link
                 href="/asphalte/soumission"

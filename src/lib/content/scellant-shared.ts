@@ -1,19 +1,23 @@
 /**
- * SCELLANT DIVISION — shared content (division-wide, location-independent).
- * Real service facts confirmed on asphalteaaa.com (scellant + lavage à pression).
- * Expanded maintenance items are tasteful, clearly-replaceable placeholders.
+ * SCELLANT / ENTRETIEN DIVISION — shared content (division-wide).
+ * Real facts: scellant appliqué par PULVÉRISATION sous pression; préparation par
+ * NETTOYAGE À SEC (balai mécanique + souffleurs), aucun lavage à l'eau.
  */
 
 const B = "/assets/generated/scellant";
+const P = "/assets/projects";
 
 export const scellantImg = {
   heroVideo: `${B}/hero.mp4`,
   heroPoster: `${B}/hero-poster.jpg`,
-  baFaded: `${B}/ba-faded.jpg`,
-  baSealed: `${B}/ba-sealed.jpg`,
-  txCleaning: `${B}/tx-cleaning.jpg`,
-  txApplication: `${B}/tx-application.jpg`,
-  txProtected: `${B}/tx-protected.jpg`,
+  // Real project photos
+  baFaded: `${P}/before-after-before.jpg`,
+  baSealed: `${P}/before-after-after.jpg`,
+  dryCleaning: `${P}/process-blowers.jpg`,
+  spray: `${P}/process-spray-estate.jpg`,
+  protected: `${P}/driveway-blue-house.jpg`,
+  whiteHouse: `${P}/project-white-house.jpg`,
+  peeling: `${P}/warning-peeling.jpg`,
   regionHero: (slug: string) => `${B}/hero-${slug}.jpg`,
 };
 
@@ -26,107 +30,104 @@ export type ScellantService = {
   verified?: boolean;
 };
 
+// Un entretien complet unifié : scellant + réparation des fissures + réparation
+// des trous, plus la préparation à sec et la protection des surfaces. Aucun lavage.
 export const scellantServices: ScellantService[] = [
   {
     slug: "scellant",
-    title: "Scellant d'asphalte",
+    title: "Application de scellant",
     short: "Un fini noir profond, protégé.",
-    desc: "Application d'un scellant durable et uniforme qui ravive l'apparence de votre asphalte et le protège contre le sel, les UV et les intempéries du Québec.",
-    image: scellantImg.txProtected,
+    desc: "Le scellant est pulvérisé uniformément à l'aide d'un système d'application sous pression. Il ravive la couleur de l'asphalte et aide à le protéger contre les rayons UV, le sel et les intempéries.",
+    image: scellantImg.spray,
     verified: true,
   },
   {
-    slug: "lavage-pression",
-    title: "Lavage à pression",
-    short: "Une surface propre avant tout.",
-    desc: "Nettoyage du béton, du pavé uni et de l'asphalte pour retirer saletés, moisissures et taches — la base d'une belle application.",
-    image: scellantImg.txCleaning,
+    slug: "reparation-fissures",
+    title: "Réparation des fissures",
+    short: "Arrêter l'eau avant qu'elle n'aggrave.",
+    desc: "Colmatage des fissures afin de limiter l'infiltration d'eau et leur aggravation, lorsque nécessaire avant l'application.",
+    image: scellantImg.protected,
     verified: true,
   },
   {
-    slug: "preparation",
-    title: "Préparation de surface",
-    short: "Le résultat dépend de la préparation.",
-    desc: "Nettoyage, séchage et préparation minutieuse de la surface pour que le scellant adhère uniformément et dure plus longtemps.",
-    image: scellantImg.txCleaning,
+    slug: "reparation-trous",
+    title: "Réparation des trous",
+    short: "Corriger avant de protéger.",
+    desc: "Correction des trous et des zones détériorées avant l'application du scellant, lorsque nécessaire.",
+    image: scellantImg.whiteHouse,
+    verified: true,
   },
   {
-    slug: "entretien-residentiel",
-    title: "Entretien résidentiel",
-    short: "Votre entrée, comme au premier jour.",
-    desc: "Traitement d'entrées de cour résidentielles pour préserver l'apparence et ralentir l'usure saisonnière.",
-    image: scellantImg.txProtected,
+    slug: "nettoyage-sec",
+    title: "Nettoyage à sec",
+    short: "Une surface propre et sèche.",
+    desc: "Nettoyage à sec de la surface à l'aide d'un balai mécanique et de souffleurs professionnels. L'asphalte doit être complètement sec avant l'application du scellant.",
+    image: scellantImg.dryCleaning,
+    verified: true,
   },
   {
-    slug: "entretien-commercial",
-    title: "Entretien commercial",
-    short: "Des surfaces soignées, une image soignée.",
-    desc: "Programmes d'entretien préventif pour stationnements et surfaces commerciales, là où le service est offert.",
-    image: scellantImg.baSealed,
-  },
-  {
-    slug: "entretien-preventif",
-    title: "Entretien préventif",
-    short: "Protéger avant de réparer.",
-    desc: "Un entretien régulier réduit la pénétration de l'eau et aide à préserver la surface plus longtemps, saison après saison.",
-    image: scellantImg.baSealed,
+    slug: "protection-surfaces",
+    title: "Protection des surfaces",
+    short: "Rien qui déborde.",
+    desc: "Protection soignée des bordures, murs, portes de garage, béton, pavé et aménagement paysager afin d'éviter les éclaboussures.",
+    image: scellantImg.spray,
+    verified: true,
   },
 ];
 
 export const scellantBenefits = [
-  { title: "Apparence ravivée", desc: "Un fini noir profond et uniforme qui redonne un air neuf à votre entrée." },
-  { title: "Protection préventive", desc: "Une barrière contre le sel, les huiles, les UV et les cycles de gel-dégel." },
-  { title: "Moins d'infiltration d'eau", desc: "Un scellant bien appliqué aide à limiter la pénétration de l'eau en surface." },
-  { title: "Surface préservée", desc: "Ralentir l'usure visible pour prolonger la belle apparence de l'asphalte." },
+  { title: "Limiter l'infiltration d'eau", desc: "Un scellant bien appliqué aide à limiter la pénétration de l'eau en surface." },
+  { title: "Ralentir l'aggravation des fissures", desc: "Protéger la surface avant que les petits dommages ne deviennent structurels." },
+  { title: "Protection contre le sel et les UV", desc: "Une barrière contre le sel de déglaçage, les rayons UV et les intempéries." },
+  { title: "Raviver l'apparence", desc: "Un fini noir profond et uniforme qui redonne un air neuf à votre entrée." },
 ];
 
-/** Sticky-scroll transformation stages (fluid / surface-focused animation language). */
+/** Sticky-scroll transformation — 5 étapes réelles, dans l'ordre du procédé. */
 export const scellantTransformation = [
-  { n: "01", label: "Asphalte terni", sub: "L'usure du temps", image: scellantImg.baFaded },
-  { n: "02", label: "Inspection", sub: "On évalue la surface", image: scellantImg.txCleaning },
-  { n: "03", label: "Nettoyage", sub: "Préparation en profondeur", image: scellantImg.txCleaning },
-  { n: "04", label: "Application", sub: "Scellant uniforme", image: scellantImg.txApplication },
-  { n: "05", label: "Fini uniforme", sub: "Un noir profond", image: scellantImg.baSealed },
-  { n: "06", label: "Résultat protégé", sub: "Pensé pour durer", image: scellantImg.txProtected },
+  { n: "01", label: "Inspection", sub: "Fissures, trous, zones fragilisées", image: scellantImg.baFaded },
+  { n: "02", label: "Nettoyage à sec", sub: "Balai mécanique & souffleurs", image: scellantImg.dryCleaning },
+  { n: "03", label: "Protection des surfaces", sub: "Bordures, murs, béton, paysage", image: scellantImg.whiteHouse },
+  { n: "04", label: "Application par pulvérisation", sub: "Scellant uniforme sous pression", image: scellantImg.spray },
+  { n: "05", label: "Surface protégée", sub: "Un fini noir profond", image: scellantImg.baSealed },
 ];
 
-/** Process steps (factual, based on the company's actual maintenance flow). */
+/** Procédé du scellant — EXACTEMENT cinq étapes (aucune étape 06). */
 export const scellantProcess = [
-  { n: "01", title: "Demande", desc: "Vous nous contactez avec votre besoin et votre secteur." },
-  { n: "02", title: "Évaluation", desc: "On évalue l'état de la surface et sa compatibilité." },
-  { n: "03", title: "Soumission", desc: "Un prix clair, détaillé et sans surprise." },
-  { n: "04", title: "Préparation", desc: "Nettoyage et préparation de la surface." },
-  { n: "05", title: "Nettoyage", desc: "Lavage à pression au besoin, puis séchage." },
-  { n: "06", title: "Application", desc: "Application uniforme du scellant, avec soin des bordures." },
-  { n: "07", title: "Séchage", desc: "Consignes de séchage avant de circuler à nouveau." },
-  { n: "08", title: "Inspection finale", desc: "On valide le résultat avec vous." },
+  { n: "01", title: "Inspection", desc: "Évaluation de l'état de l'asphalte, des fissures, des trous et des zones fragilisées." },
+  { n: "02", title: "Nettoyage à sec", desc: "Nettoyage avec un balai mécanique et des souffleurs. Aucun lavage à l'eau." },
+  { n: "03", title: "Protection des surfaces", desc: "Protection des bordures, murs, portes de garage, béton, pavé et aménagement paysager." },
+  { n: "04", title: "Réparation des fissures et des trous", desc: "Colmatage et correction des zones endommagées lorsque requis avant l'application." },
+  { n: "05", title: "Application du scellant", desc: "Pulvérisation uniforme du scellant à l'aide d'un système d'application sous pression." },
 ];
 
-/** "Which service?" educational comparison — never presents sealant as structural repair. */
+/**
+ * "Pose ou entretien : quelle intervention convient à votre surface?"
+ * Services complémentaires — jamais présentés comme des choix concurrents.
+ */
 export const serviceComparison = {
   asphalte: {
-    title: "Choisir l'asphaltage complet",
+    title: "Pavage et installation",
     href: "/asphalte",
-    cta: "Voir l'asphaltage complet",
+    cta: "Découvrir le pavage",
     points: [
-      "La surface est endommagée structurellement",
-      "La fondation a cédé ou s'affaisse",
-      "Il y a des dépressions importantes",
+      "La fondation a cédé ou s'est affaissée",
+      "La surface est gravement endommagée",
+      "Des dépressions importantes sont présentes",
       "Le drainage est déficient",
       "De grandes sections doivent être remplacées",
-      "Un nouvel asphalte doit être installé",
+      "Une nouvelle couche d'asphalte doit être installée",
     ],
   },
   scellant: {
-    title: "Choisir le scellant",
+    title: "Entretien et protection",
     href: "#soumission",
-    cta: "Demander une soumission",
+    cta: "Découvrir l'entretien",
     points: [
-      "L'asphalte est encore structurellement acceptable",
-      "La couleur est ternie ou décolorée",
-      "La surface a besoin d'une protection préventive",
-      "Vous voulez améliorer l'apparence",
-      "L'entrée a besoin d'un nettoyage et d'un entretien",
+      "La fondation demeure stable",
+      "L'asphalte a perdu sa couleur foncée",
+      "Des fissures légères ou modérées sont visibles",
+      "De petits trous doivent être réparés",
+      "La surface doit être protégée avant que les dommages deviennent structurels",
     ],
   },
 };
@@ -136,13 +137,13 @@ export type ScellantFAQ = { q: string; a: string };
 export const scellantFaqs: ScellantFAQ[] = [
   { q: "Quand faut-il appliquer un scellant ?", a: "Généralement lorsque l'asphalte est encore structurellement solide mais que son apparence se dégrade, ou de façon préventive après quelques saisons. La saison chaude est idéale pour l'adhérence." },
   { q: "Combien de temps faut-il attendre avant de circuler ?", a: "Le temps de séchage varie selon la météo et le produit. On vous remet des consignes claires après l'application. Prévoyez généralement quelques heures avant de marcher dessus et plus longtemps pour un véhicule." },
-  { q: "Quelle préparation est nécessaire ?", a: "La surface doit être propre et sèche. On effectue le nettoyage et la préparation nécessaires avant l'application pour un résultat uniforme et durable." },
-  { q: "Faites-vous le nettoyage avant l'application ?", a: "Oui. Un lavage à pression est souvent réalisé au préalable pour retirer saletés, moisissures et taches, ce qui améliore l'adhérence et le fini." },
-  { q: "Le scellant répare-t-il les fissures ?", a: "Le scellant protège et ravive une surface saine ; il ne remplace pas une réparation structurelle ni un nouveau pavage. Si votre asphalte est fissuré en profondeur ou affaissé, un asphaltage complet est plus approprié." },
+  { q: "Quelle préparation est nécessaire ?", a: "La surface doit être propre et complètement sèche. On effectue un nettoyage à sec à l'aide d'un balai mécanique et de souffleurs avant l'application — aucun lavage à l'eau." },
+  { q: "Comment le scellant est-il appliqué ?", a: "Le scellant est pulvérisé uniformément à l'aide d'un système d'application sous pression. Les bordures et les surfaces adjacentes sont soigneusement protégées afin d'éviter les éclaboussures." },
+  { q: "Le scellant répare-t-il les fissures ?", a: "Le scellant protège et ravive une surface saine ; il ne remplace pas une réparation structurelle ni une nouvelle couche d'asphalte. Les fissures et les petits trous sont réparés lorsque nécessaire avant l'application, mais si la fondation s'est affaissée ou que les dommages sont importants, un pavage peut être recommandé." },
   { q: "Travaillez-vous sur les stationnements commerciaux ?", a: "Selon le secteur et le projet, oui. Contactez-nous pour valider la disponibilité dans votre région." },
   { q: "Que se passe-t-il en cas de pluie ?", a: "Le scellant a besoin d'une surface sèche et de conditions favorables. En cas de pluie, on replanifie l'application pour garantir un bon résultat." },
   { q: "Dois-je être présent pendant les travaux ?", a: "Ce n'est généralement pas obligatoire, mais on convient avec vous des accès et des consignes de séchage avant de commencer." },
-  { q: "Comment obtenir une soumission ?", a: "Remplissez le formulaire de soumission ou appelez-nous. On revient rapidement avec un prix clair, souvent la journée même." },
+  { q: "Comment obtenir une soumission ?", a: "Envoyez-nous quelques photos de votre entrée ou appelez-nous. On revient rapidement avec une recommandation et un prix clair." },
 ];
 
 /** Real Google reviews (from asphalteaaa.com). Region not verified → shown division-wide. */

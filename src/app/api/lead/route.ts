@@ -11,6 +11,7 @@ const schema = z.object({
   kind: z.enum(["contact", "soumission"]).default("contact"),
   division: z.enum(["asphalte", "scellant"]).optional(),
   region: z.string().optional(),
+  consent: z.boolean().optional(),
   sourcePage: z.string().optional(),
   name: z.string().min(2, "Nom requis"),
   email: z.string().email("Courriel invalide").or(z.literal("")).optional(),
@@ -21,7 +22,7 @@ const schema = z.object({
 
 function buildTags(d: z.infer<typeof schema>): string[] {
   const tags = ["Website Lead"];
-  if (d.division === "asphalte") tags.push("Asphaltage Complet");
+  if (d.division === "asphalte") tags.push("Pavage");
   if (d.division === "scellant") {
     tags.push("Scellant");
     const loc = d.meta?.ghlLocationTag as string | undefined;
@@ -34,7 +35,7 @@ function buildTags(d: z.infer<typeof schema>): string[] {
   if (d.meta?.photoUploaded) tags.push("Photo Uploaded");
   const t = (d.meta?.timeline as string | undefined) ?? "";
   if (t === "Dès que possible") tags.push("High Intent");
-  if (d.meta?.condition === "Dommages importants") tags.push("Possible Asphaltage");
+  if (d.meta?.condition === "Dommages importants") tags.push("Possible Pavage");
   return tags;
 }
 

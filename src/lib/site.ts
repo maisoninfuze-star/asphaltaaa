@@ -60,12 +60,14 @@ export type Service = {
   verified?: boolean; // true = confirmed on existing site
 };
 
+// Division pavage = pose, pavage et réparation. Le scellant et l'entretien
+// vivent dans la division /scellant. Aucun service de lavage à l'eau.
 export const services: Service[] = [
   {
     slug: "excavation",
     title: "Excavation & terrassement",
     short: "On part de zéro, du bon côté.",
-    desc: "Retrait du sol instable, nivellement et préparation du site. Une fondation solide commence sous la surface.",
+    desc: "Retrait du sol instable, nivellement et préparation du site. Une surface durable commence par une préparation rigoureuse.",
     category: "Terrassement",
   },
   {
@@ -85,46 +87,33 @@ export const services: Service[] = [
   {
     slug: "pavage",
     title: "Pavage d'asphalte",
-    short: "Enrobé à chaud, posé avec précision.",
-    desc: "Installation d'asphalte neuf pour entrées résidentielles, stationnements commerciaux et voies privées.",
+    short: "Une nouvelle couche, posée avec précision.",
+    desc: "Pose d'une nouvelle couche d'asphalte pour entrées résidentielles, stationnements commerciaux et voies privées.",
     category: "Installation",
+    verified: true,
   },
   {
     slug: "resurfacage",
     title: "Resurfaçage & rapiéçage",
     short: "Une seconde vie, sans tout refaire.",
-    desc: "Couche de recouvrement sur une base saine pour retrouver une surface neuve à une fraction du coût.",
+    desc: "Couche de recouvrement sur une base saine pour retrouver une surface neuve lorsque l'état de la fondation le permet.",
     category: "Réparation",
   },
   {
-    slug: "reparations",
-    title: "Réparations & nids-de-poule",
-    short: "On règle le problème à la source.",
-    desc: "Colmatage de fissures, réparation de nids-de-poule et de dommages hivernaux avant qu'ils ne s'aggravent.",
+    slug: "reparation-fissures",
+    title: "Réparation des fissures",
+    short: "Arrêter l'eau avant qu'elle n'aggrave.",
+    desc: "Colmatage des fissures afin de limiter l'infiltration d'eau et de ralentir leur aggravation.",
     category: "Réparation",
-  },
-  {
-    slug: "scellant",
-    title: "Scellant d'asphalte",
-    short: "Une entrée qui retrouve sa jeunesse.",
-    desc: "Scellant durable, uniforme et appliqué avec précision — protection contre les fissures, le sel, les UV et les intempéries.",
-    category: "Entretien",
     verified: true,
   },
   {
-    slug: "lavage-pression",
-    title: "Lavage à pression",
-    short: "Propre, comme au premier jour.",
-    desc: "Nettoyage efficace du béton, du pavé uni et de l'asphalte — saletés, moisissures et taches tenaces retirées.",
-    category: "Entretien",
+    slug: "reparation-trous",
+    title: "Réparation des trous et nids-de-poule",
+    short: "Corriger le problème à la source.",
+    desc: "Correction des trous, des nids-de-poule et des zones détériorées avant qu'ils ne deviennent structurels.",
+    category: "Réparation",
     verified: true,
-  },
-  {
-    slug: "lignage",
-    title: "Lignage de stationnement",
-    short: "De l'ordre, ligne après ligne.",
-    desc: "Marquage et lignage de stationnements commerciaux, cases accessibles et signalisation au sol.",
-    category: "Entretien",
   },
 ];
 
@@ -134,17 +123,18 @@ export const process = [
   { n: "03", title: "Soumission claire", desc: "Un prix détaillé, sans surprise, par écrit." },
   { n: "04", title: "Excavation", desc: "Retrait du sol instable et préparation de l'assise." },
   { n: "05", title: "Fondation", desc: "Pierre concassée compactée pour une base durable." },
-  { n: "06", title: "Pavage", desc: "Enrobé à chaud posé et nivelé à la bonne épaisseur." },
+  { n: "06", title: "Pose de l'asphalte", desc: "Nouvelle couche d'asphalte posée et nivelée à la bonne épaisseur." },
   { n: "07", title: "Compaction", desc: "Rouleau compresseur pour une densité et une planéité optimales." },
-  { n: "08", title: "Finition", desc: "Bordures, transitions et scellant pour un rendu impeccable." },
+  { n: "08", title: "Finition", desc: "Bordures et transitions soignées pour un rendu impeccable." },
   { n: "09", title: "Inspection", desc: "On valide chaque détail avec vous avant de quitter." },
 ];
 
+// Non-numeric trust indicators (unverified figures removed).
 export const stats = [
-  { value: "500+", label: "Clients satisfaits", note: "TODO: chiffre à confirmer" },
-  { value: "5", label: "Régions desservies", note: "" },
-  { value: "9", label: "Étapes maîtrisées", note: "" },
-  { value: "100%", label: "Travail garanti", note: "TODO: garantie à préciser" },
+  { value: "Résidentiel", label: "et commercial", note: "" },
+  { value: "Soumission", label: "gratuite et claire", note: "" },
+  { value: "Préparation", label: "minutieuse", note: "" },
+  { value: "Travail", label: "propre", note: "" },
 ];
 
 export const testimonials = [
@@ -173,57 +163,55 @@ export type Project = {
   title: string;
   location: string;
   category: string;
-  surface: string;
-  year: string;
+  surface?: string;
+  year?: string;
   services: string[];
   summary: string;
+  image?: string;
 };
 
-// TODO: remplacer par de vrais projets + photos avant/après.
+// Vrais projets Asphalte AAA (photos réelles). Aucune adresse, superficie ni
+// date inventée — location au niveau régional seulement.
 export const projects: Project[] = [
   {
-    slug: "entree-residentielle-brossard",
-    title: "Entrée résidentielle repavée",
-    location: "Brossard, Rive-Sud",
+    slug: "entree-residentielle-scellee",
+    title: "Entrée résidentielle scellée",
+    location: "Québec",
     category: "Résidentiel",
-    surface: "185 m²",
-    year: "2024",
-    services: ["Excavation", "Fondation", "Pavage"],
+    services: ["Scellant", "Réparation des fissures"],
     summary:
-      "Retrait d'une vieille dalle fissurée, nouvelle fondation de pierre et pavage complet pour une entrée nette et durable.",
+      "Préparation à sec, réparation des fissures et application uniforme d'un scellant protecteur pour raviver et protéger l'entrée.",
+    image: "/assets/projects/driveway-blue-house.jpg",
   },
   {
-    slug: "stationnement-commercial-longueuil",
-    title: "Stationnement commercial",
-    location: "Longueuil",
-    category: "Commercial",
-    surface: "1 400 m²",
-    year: "2024",
-    services: ["Nivellement", "Pavage", "Lignage"],
-    summary:
-      "Réfection complète d'un stationnement, drainage corrigé et lignage neuf pour maximiser les cases.",
-  },
-  {
-    slug: "resurfacage-chicoutimi",
-    title: "Resurfaçage d'entrée double",
-    location: "Chicoutimi",
+    slug: "entree-double-protegee",
+    title: "Entrée double protégée",
+    location: "Québec",
     category: "Résidentiel",
-    surface: "240 m²",
-    year: "2023",
-    services: ["Resurfaçage", "Scellant"],
+    services: ["Scellant"],
     summary:
-      "Couche de recouvrement sur une base saine, puis scellant pour protéger la surface des hivers rigoureux.",
+      "Une entrée vieillissante retrouve un fini noir uniforme après la préparation et l'application du scellant.",
+    image: "/assets/projects/driveway-brick-houses.jpg",
   },
   {
-    slug: "reparations-thetford",
-    title: "Réparations & scellant",
-    location: "Thetford Mines",
-    category: "Entretien",
-    surface: "320 m²",
-    year: "2023",
-    services: ["Réparations", "Scellant", "Lavage à pression"],
+    slug: "entree-maison-blanche",
+    title: "Entrée résidentielle ravivée",
+    location: "Québec",
+    category: "Résidentiel",
+    services: ["Scellant", "Réparation des trous"],
     summary:
-      "Colmatage de fissures, réparation de nids-de-poule et scellant uniforme pour prolonger la vie de la surface.",
+      "Correction des zones détériorées et scellant appliqué par pulvérisation, avec protection soignée des bordures.",
+    image: "/assets/projects/project-white-house.jpg",
+  },
+  {
+    slug: "grande-propriete-entretien",
+    title: "Entretien d'une grande propriété",
+    location: "Québec",
+    category: "Résidentiel",
+    services: ["Scellant", "Nettoyage à sec"],
+    summary:
+      "Nettoyage à sec, protection des surfaces adjacentes et application du scellant sur une grande entrée de cour.",
+    image: "/assets/projects/process-spray-estate.jpg",
   },
 ];
 
@@ -256,8 +244,8 @@ export const jobs = [
 
 export const faqs = [
   {
-    q: "Faites-vous seulement du scellant ?",
-    a: "Non. Asphalte AAA offre le service complet : excavation, nivellement, fondation de pierre, pavage d'asphalte neuf, resurfaçage, réparations, scellant, lavage à pression et lignage. On peut prendre en charge votre projet du terrain brut jusqu'à la surface finie.",
+    q: "Quels services offrez-vous ?",
+    a: "De la pose à l'entretien : excavation, nivellement, fondation de pierre, pavage d'asphalte, resurfaçage, réparation des fissures et des trous, ainsi que l'application de scellant. De la pose initiale à l'entretien préventif, on accompagne votre surface à chaque étape de sa durée de vie.",
   },
   {
     q: "Dans quelles régions travaillez-vous ?",
@@ -268,15 +256,11 @@ export const faqs = [
     a: "Chaque projet est unique : la superficie, l'état du sol, le drainage et l'accès influencent le prix. On vous fournit une soumission gratuite, détaillée et sans surprise après une visite.",
   },
   {
-    q: "Quel est le meilleur moment pour paver ou sceller ?",
-    a: "La saison chaude (mai à octobre) est idéale pour le pavage et le scellant, car l'asphalte a besoin de chaleur pour bien adhérer et durcir. On planifie selon la météo pour un résultat optimal.",
+    q: "Quel est le meilleur moment pour paver ou appliquer un scellant ?",
+    a: "La saison chaude est idéale : l'asphalte et le scellant ont besoin de chaleur pour bien adhérer et durcir. La surface doit aussi être sèche avant l'application du scellant. On planifie selon la météo pour un résultat optimal.",
   },
   {
-    q: "Offrez-vous une garantie ?",
-    a: "Oui, notre travail est garanti. Les détails de la garantie sont précisés dans votre soumission. TODO : préciser la durée exacte de la garantie.",
-  },
-  {
-    q: "Reprenez-vous les projets laissés en plan par d'autres ?",
-    a: "Absolument. On reprend souvent des projets inachevés et on les termine avec fierté et selon les règles de l'art.",
+    q: "Pose ou entretien : comment savoir ce qu'il me faut ?",
+    a: "Si la fondation demeure stable et que la surface a surtout perdu sa couleur ou présente des fissures légères, l'entretien et le scellant suffisent souvent. Si la fondation a cédé, que le drainage est déficient ou que les dommages sont structurels, une réparation plus complète ou une nouvelle couche d'asphalte peut être recommandée. Envoyez-nous quelques photos et on vous guide.",
   },
 ];

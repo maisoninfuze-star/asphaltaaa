@@ -16,7 +16,7 @@ export default function ContactPage() {
         eyebrow="Nous joindre"
         index="/ 07"
         title="Parlons de votre projet."
-        intro="Un appel, un courriel ou le formulaire — on vous répond rapidement, souvent la journée même."
+        intro="Un appel, un courriel ou le formulaire — on vous répond rapidement."
       />
 
       <section className="border-t border-warm/10 bg-asphalt py-12 lg:py-20">

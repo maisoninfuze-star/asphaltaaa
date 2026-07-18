@@ -19,7 +19,7 @@ export default function ScellantSelectorPage() {
         navItems={[]}
         ctaHref="/scellant"
         ctaLabel="Choisir ma région"
-        switchLabel="Besoin d'un asphaltage complet ?"
+        switchLabel="Besoin d'un pavage ?"
         switchHref="/asphalte"
         contextLabel="Scellant d'asphalte"
       />
@@ -33,7 +33,7 @@ export default function ScellantSelectorPage() {
         serviceLabel="Entretien"
         ctaHref="/scellant"
         ctaTitle={["Redonnez vie", "à votre asphalte."]}
-        tagline="Scellant, lavage à pression et entretien d'asphalte. Une division d'Asphalte AAA."
+        tagline="Scellant, réparation des fissures et entretien d'asphalte. Une division d'Asphalte AAA."
       />
     </>
   );

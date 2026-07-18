@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { site } from "@/lib/site";
 import { img } from "@/lib/images";
 import { Magnetic } from "@/components/motion/magnetic";
 
@@ -70,7 +69,7 @@ export function Hero() {
       <motion.div style={{ y, scale }} className="absolute inset-0 z-0 will-change-transform">
         <Image
           src={img.heroPoster}
-          alt="Chantier de pavage d'asphalte Asphalte AAA au coucher du soleil"
+          alt="Entrée d'asphalte résidentielle réalisée par Asphalte AAA"
           fill
           priority
           sizes="100vw"
@@ -126,11 +125,11 @@ export function Hero() {
           className="eyebrow mb-8 flex items-center gap-3"
         >
           <span className="inline-block h-px w-10 bg-hivis" />
-          Excavation · Pavage · Entretien — {site.regions[0]}
+          Pavage · Réparation · Entretien — Québec
         </motion.p>
 
         <h1 className="display text-warm text-[clamp(2.5rem,12.5vw,8.5rem)] leading-[0.85] [text-shadow:0_2px_40px_rgba(0,0,0,0.5)]">
-          {["Bâtir des", "fondations", "qui durent."].map((t, i) => (
+          {["Des surfaces", "solides.", "Une finition", "à la hauteur."].map((t, i) => (
             <span key={i} className="line-mask">
               <motion.span
                 custom={i}
@@ -152,9 +151,10 @@ export function Hero() {
             transition={{ delay: 0.7, duration: 0.9 }}
             className="max-w-xl text-lg text-warm-2 lg:text-xl"
           >
-            Nous prenons en charge votre projet du terrain brut jusqu&apos;à la
-            surface finie. Une équipe rapide, minutieuse et humaine — la
-            précision AAA, couche après couche.
+            Asphalte AAA réalise la pose, la réparation et l&apos;entretien de
+            surfaces d&apos;asphalte résidentielles et commerciales. Une équipe
+            minutieuse, un travail propre et des solutions adaptées à
+            l&apos;état réel de votre terrain.
           </motion.p>
 
           <motion.div
@@ -176,14 +176,23 @@ export function Hero() {
             </Magnetic>
             <Magnetic strength={0.25}>
               <Link
-                href="/asphalte/services"
+                href="/asphalte/realisations"
                 className="border border-warm/30 bg-asphalt/20 px-8 py-5 font-mono text-xs uppercase tracking-[0.18em] text-warm backdrop-blur-sm transition-colors hover:border-hivis hover:text-hivis"
               >
-                Nos services
+                Voir nos réalisations
               </Link>
             </Magnetic>
           </motion.div>
         </div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1, duration: 0.8 }}
+          className="mt-8 font-mono text-[0.62rem] uppercase tracking-[0.14em] text-warm/70"
+        >
+          Soumission gratuite · Service résidentiel et commercial · Plusieurs régions desservies
+        </motion.p>
       </motion.div>
 
       {/* Scroll cue */}

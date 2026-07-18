@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const reassure = [
   "Soumission gratuite et sans engagement",
-  "Réponse rapide, souvent la journée même",
+  "Réponse rapide",
   "Prix détaillé, sans surprise",
 ];
 

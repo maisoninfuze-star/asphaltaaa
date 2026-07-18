@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { services } from "@/lib/site";
 import { site } from "@/lib/site";
+import { getLeadContext } from "@/lib/lead-context";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
 
@@ -23,6 +24,7 @@ const schema = z.object({
   phone: z.string().min(6, "Entrez un téléphone valide"),
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().max(2000).optional(),
+  consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
 });
 type Values = z.infer<typeof schema>;
 
@@ -47,7 +49,7 @@ export function QuoteForm() {
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { services: [], projectType: undefined, surface: "", message: "" },
+    defaultValues: { services: [], projectType: undefined, surface: "", message: "", consent: false },
     mode: "onTouched",
   });
 
@@ -81,6 +83,7 @@ export function QuoteForm() {
         email: values.email,
         message: values.message,
         division: "asphalte",
+        consent: values.consent,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         meta: {
           projectType: values.projectType,
@@ -88,6 +91,7 @@ export function QuoteForm() {
           surface: values.surface,
           timeline: values.timeline,
           location: values.location,
+          ...getLeadContext(),
         },
       }),
     });
@@ -108,8 +112,7 @@ export function QuoteForm() {
           Demande envoyée.
         </h2>
         <p className="mx-auto mt-4 max-w-md text-concrete-light">
-          Merci ! On étudie votre projet et on vous revient rapidement — souvent
-          la journée même. Pour une urgence, appelez-nous directement.
+          Votre demande a bien été envoyée. Un membre de l'équipe communiquera avec vous prochainement.
         </p>
         <a
           href={site.phoneHref}
@@ -274,6 +277,11 @@ export function QuoteForm() {
                   <Field label="Message (optionnel)">
                     <Textarea placeholder="Détails additionnels, accès au site, photos disponibles…" {...register("message")} />
                   </Field>
+                  <label className="flex items-start gap-3 text-sm text-concrete-light">
+                    <input type="checkbox" {...register("consent")} className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-hivis)]" />
+                    <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
+                  </label>
+                  {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
                 </fieldset>
               )}
             </motion.div>

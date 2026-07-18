@@ -49,7 +49,7 @@ export default async function ScellantAboutPage({ params }: { params: Promise<{ 
               À {loc.name}, on protège et on ravive les surfaces d&apos;asphalte encore saines : nettoyage,
               préparation minutieuse et application uniforme du scellant. Pour les surfaces endommagées en
               profondeur, notre division{" "}
-              <Link href="/asphalte" className="text-hivis hover:underline">asphaltage complet</Link>{" "}
+              <Link href="/asphalte" className="text-hivis hover:underline">pavage et réparation</Link>{" "}
               prend le relais — de l&apos;excavation à la surface finie.
             </p>
             <p className="mt-4 text-concrete-light">{loc.serviceAreaDescription}</p>

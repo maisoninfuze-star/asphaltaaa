@@ -6,12 +6,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { ButtonEl } from "@/components/ui/button";
+import { getLeadContext } from "@/lib/lead-context";
 
 const schema = z.object({
   name: z.string().min(2, "Entrez votre nom"),
   phone: z.string().min(6, "Entrez un téléphone valide"),
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().min(4, "Décrivez brièvement votre besoin"),
+  consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
 });
 type Values = z.infer<typeof schema>;
 
@@ -27,7 +29,7 @@ export function ContactForm({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<Values>({ resolver: zodResolver(schema) });
+  } = useForm<Values>({ resolver: zodResolver(schema), defaultValues: { consent: false } });
 
   async function onSubmit(values: Values) {
     const res = await fetch("/api/lead", {
@@ -39,6 +41,7 @@ export function ContactForm({
         region,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         ...values,
+        meta: getLeadContext(),
       }),
     });
     if (res.ok) setSent(true);
@@ -50,7 +53,7 @@ export function ContactForm({
         <p className="eyebrow mb-3">Message reçu</p>
         <h3 className="display text-2xl text-warm">Merci — on vous revient vite.</h3>
         <p className="mt-3 text-concrete-light">
-          On répond rapidement, souvent la journée même.
+          On répond rapidement.
         </p>
       </div>
     );
@@ -72,6 +75,11 @@ export function ContactForm({
       <Field label="Votre projet" error={errors.message?.message}>
         <Textarea placeholder="Décrivez votre besoin, la surface approximative et le secteur." {...register("message")} />
       </Field>
+      <label className="flex items-start gap-3 text-sm text-concrete-light">
+        <input type="checkbox" {...register("consent")} className="mt-1 h-4 w-4 shrink-0 accent-[var(--color-hivis)]" />
+        <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
+      </label>
+      {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
       <ButtonEl type="submit" disabled={isSubmitting} className="self-start">
         {isSubmitting ? "Envoi…" : "Envoyer le message"}
       </ButtonEl>

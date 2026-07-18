@@ -49,11 +49,11 @@ export type ScellantLocation = {
   ghlRouting: { locationTag: string };
 };
 
-const galleryFor = (label: string): ScellantGalleryItem[] => [
-  { image: scellantImg.baSealed, title: `Entrée résidentielle — ${label}`, service: "Scellant d'asphalte", placeholder: true },
-  { image: scellantImg.txProtected, title: "Fini scellé", service: "Scellant d'asphalte", placeholder: true },
-  { image: scellantImg.txCleaning, title: "Préparation de surface", service: "Lavage à pression", placeholder: true },
-  { image: scellantImg.txApplication, title: "Application du scellant", service: "Scellant d'asphalte", placeholder: true },
+const galleryFor = (): ScellantGalleryItem[] => [
+  { image: scellantImg.baSealed, title: "Entrée résidentielle scellée", service: "Scellant d'asphalte" },
+  { image: scellantImg.protected, title: "Fini noir uniforme", service: "Scellant d'asphalte" },
+  { image: scellantImg.dryCleaning, title: "Nettoyage à sec", service: "Préparation" },
+  { image: scellantImg.spray, title: "Application par pulvérisation", service: "Scellant d'asphalte" },
 ];
 
 /** Region-specific service-area FAQ appended to the shared list. */
@@ -83,7 +83,7 @@ export const scellantLocations: ScellantLocation[] = [
       "Service de scellant et d'entretien d'asphalte pour les propriétés résidentielles et, selon le secteur, commerciales de la Rive-Sud de Montréal.",
     cityPhoto: "/assets/regions/montreal.jpg",
     heroMedia: { poster: scellantImg.regionHero("montreal"), video: scellantImg.heroVideo },
-    gallery: galleryFor("Rive-Sud"),
+    gallery: galleryFor(),
     testimonials: scellantTestimonials,
     faqs: [
       ...scellantFaqs,
@@ -92,10 +92,10 @@ export const scellantLocations: ScellantLocation[] = [
     seo: {
       title: "Scellant d'asphalte à Montréal et sur la Rive-Sud",
       description:
-        "Scellant d'asphalte, lavage à pression et entretien d'entrées de cour sur la Rive-Sud de Montréal. Soumission gratuite, fini noir profond et durable.",
+        "Scellant d'asphalte, réparation des fissures et entretien d'entrées de cour sur la Rive-Sud de Montréal. Soumission gratuite, fini noir profond et durable.",
       keywords: [
         "scellant d'asphalte Montréal", "scellant asphalte Rive-Sud",
-        "entretien d'asphalte Rive-Sud", "lavage à pression entrée Montréal",
+        "entretien d'asphalte Rive-Sud", "réparation d'asphalte Rive-Sud",
         "protection entrée asphaltée Longueuil", "scellant entrée de cour Brossard",
       ],
       canonicalPath: "/scellant/montreal",
@@ -120,7 +120,7 @@ export const scellantLocations: ScellantLocation[] = [
       "Service de scellant et d'entretien d'asphalte pour les propriétés de la région de Québec, sur les deux rives.",
     cityPhoto: "/assets/regions/quebec.jpg",
     heroMedia: { poster: scellantImg.regionHero("quebec"), video: scellantImg.heroVideo },
-    gallery: galleryFor("Québec"),
+    gallery: galleryFor(),
     testimonials: scellantTestimonials,
     faqs: [
       ...scellantFaqs,
@@ -129,10 +129,10 @@ export const scellantLocations: ScellantLocation[] = [
     seo: {
       title: "Scellant d'asphalte dans la région de Québec",
       description:
-        "Scellant d'asphalte, lavage à pression et entretien d'entrées de cour dans la région de Québec. Soumission gratuite, fini durable.",
+        "Scellant d'asphalte, réparation des fissures et entretien d'entrées de cour dans la région de Québec. Soumission gratuite, fini durable.",
       keywords: [
         "scellant d'asphalte Québec", "entretien d'asphalte Québec",
-        "lavage à pression Québec", "protection entrée asphaltée Lévis",
+        "réparation d'asphalte Québec", "protection entrée asphaltée Lévis",
         "scellant entrée de cour Sainte-Foy",
       ],
       canonicalPath: "/scellant/quebec",
@@ -157,7 +157,7 @@ export const scellantLocations: ScellantLocation[] = [
       "Service de scellant et d'entretien d'asphalte pour les propriétés de Rimouski et du Bas-Saint-Laurent.",
     cityPhoto: "/assets/regions/rimouski.jpg",
     heroMedia: { poster: scellantImg.regionHero("rimouski"), video: scellantImg.heroVideo },
-    gallery: galleryFor("Bas-Saint-Laurent"),
+    gallery: galleryFor(),
     testimonials: scellantTestimonials,
     faqs: [
       ...scellantFaqs,
@@ -166,10 +166,10 @@ export const scellantLocations: ScellantLocation[] = [
     seo: {
       title: "Scellant d'asphalte à Rimouski et dans le Bas-Saint-Laurent",
       description:
-        "Scellant d'asphalte, lavage à pression et entretien d'entrées de cour à Rimouski et dans le Bas-Saint-Laurent. Soumission gratuite.",
+        "Scellant d'asphalte, réparation des fissures et entretien d'entrées de cour à Rimouski et dans le Bas-Saint-Laurent. Soumission gratuite.",
       keywords: [
         "scellant d'asphalte Rimouski", "entretien d'asphalte Bas-Saint-Laurent",
-        "lavage à pression Rimouski", "protection entrée asphaltée Mont-Joli",
+        "réparation d'asphalte Rimouski", "protection entrée asphaltée Mont-Joli",
       ],
       canonicalPath: "/scellant/rimouski",
     },
