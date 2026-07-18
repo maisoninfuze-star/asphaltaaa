@@ -35,13 +35,18 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description:
-    "Service d'asphalte complet au Québec : excavation, fondation, pavage, resurfaçage, réparations, scellant et entretien. De l'excavation à la surface finie — la précision AAA. Soumission gratuite.",
+    "Pavage, réparation et entretien d'asphalte au Québec : excavation, fondation, pose d'asphalte, resurfaçage, réparation des fissures et des trous, et scellant. La précision AAA. Soumission gratuite.",
   keywords: [
-    "asphalte", "pavage", "excavation", "scellant d'asphalte",
-    "resurfaçage", "entrée de cour", "stationnement", "Rive-Sud de Montréal",
-    "Québec", "Chicoutimi", "Rimouski", "Thetford Mines",
+    "pavage d'asphalte", "réparation d'asphalte", "scellant d'asphalte",
+    "réparation de fissures d'asphalte", "réparation de trous d'asphalte",
+    "entretien d'entrée en asphalte", "pavage résidentiel", "pavage commercial",
+    "Rive-Sud de Montréal", "Québec", "Rimouski",
   ],
   authors: [{ name: site.name }],
+  icons: {
+    icon: "/assets/brand/icon-32.png",
+    apple: "/assets/brand/icon-180.png",
+  },
   openGraph: {
     type: "website",
     locale: "fr_CA",
@@ -49,12 +54,14 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — ${site.tagline}`,
     description:
-      "De l'excavation à la surface finie. Service d'asphalte complet au Québec. Soumission gratuite.",
+      "Pavage, réparation et entretien d'asphalte au Québec. La précision AAA. Soumission gratuite.",
+    images: [{ url: "/assets/brand/og.jpg", width: 1200, height: 630, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — ${site.tagline}`,
-    description: "Service d'asphalte complet au Québec. Soumission gratuite.",
+    description: "Pavage, réparation et entretien d'asphalte au Québec. Soumission gratuite.",
+    images: ["/assets/brand/og.jpg"],
   },
   robots: { index: true, follow: true },
   alternates: { canonical: url },
