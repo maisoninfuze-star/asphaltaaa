@@ -53,9 +53,41 @@ export async function POST(req: Request) {
   }
 
   const lead = parsed.data;
+  const tags = buildTags(lead);
+  const m = lead.meta ?? {};
+  const nameParts = lead.name.trim().split(/\s+/);
+  const firstName = nameParts[0] ?? lead.name;
+  const lastName = nameParts.slice(1).join(" ");
+  // Flat, GoHighLevel-friendly payload: top-level string fields map cleanly to
+  // contact fields and are easy to reference in workflow actions.
   const payload = {
-    ...lead,
-    tags: buildTags(lead),
+    // Contact core
+    name: lead.name,
+    firstName,
+    lastName,
+    email: lead.email ?? "",
+    phone: lead.phone,
+    // Lead context
+    kind: lead.kind,
+    division: lead.division ?? "",
+    region: lead.region ?? "",
+    sourcePage: lead.sourcePage ?? "",
+    consent: lead.consent ?? false,
+    message: lead.message ?? "",
+    // Tags (array for GHL "Add tags"; CSV string as a fallback reference)
+    tags,
+    tagsCsv: tags.join(", "),
+    // Flattened context / attribution
+    clientType: (m.clientType || m.projectType || "") as string,
+    timeline: (m.timeline || "") as string,
+    condition: (m.condition || "") as string,
+    surface: (m.surface || "") as string,
+    address: (m.address || "") as string,
+    utmSource: (m.utm_source || "") as string,
+    utmMedium: (m.utm_medium || "") as string,
+    utmCampaign: (m.utm_campaign || "") as string,
+    landingPage: (m.landing_page || "") as string,
+    referrer: (m.referrer || "") as string,
     receivedAt: new Date().toISOString(),
   };
 

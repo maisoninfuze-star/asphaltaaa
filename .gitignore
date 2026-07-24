@@ -42,3 +42,7 @@ next-env.d.ts
 
 # deps
 .firecrawl/
+
+# WordPress backup archive of the OLD site — NEVER commit (contains DB dump/hashes)
+AsphalteAAAArchive_*/
+*_archive/
