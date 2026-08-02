@@ -30,15 +30,24 @@ export const site = {
   regionsNote: "et les municipalités avoisinantes",
 } as const;
 
-export const nav = [
+/** Primary nav — shown inline in the desktop header. */
+export const navPrimary = [
   { label: "Accueil", href: "/asphalte" },
   { label: "Services", href: "/asphalte/services" },
   { label: "Réalisations", href: "/asphalte/realisations" },
   { label: "À propos", href: "/asphalte/a-propos" },
-  { label: "Zones desservies", href: "/asphalte/zones-desservies" },
-  { label: "Emplois", href: "/asphalte/emplois" },
   { label: "Contact", href: "/asphalte/contact" },
 ] as const;
+
+/** Secondary links tucked under the header "Plus" dropdown. */
+export const navMore = [
+  { label: "Zones desservies", href: "/asphalte/zones-desservies" },
+  { label: "Emplois", href: "/asphalte/emplois" },
+  { label: "FAQ", href: "/asphalte/faq" },
+] as const;
+
+/** Full nav — footer, sitemap, 404 and the mobile menu. */
+export const nav = [...navPrimary, ...navMore];
 
 /** The narrative stages of a full asphalt project — powers the cinematic hero. */
 export const projectStages = [

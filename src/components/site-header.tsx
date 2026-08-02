@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { nav as asphalteNav, site } from "@/lib/site";
+import { navPrimary as asphalteNavPrimary, navMore as asphalteNavMore, site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 
@@ -17,7 +17,8 @@ export type HeaderNavItem = { label: string; href: string };
  */
 export function SiteHeader({
   homeHref = "/asphalte",
-  navItems = [...asphalteNav],
+  navItems = [...asphalteNavPrimary],
+  moreItems = [...asphalteNavMore],
   ctaHref = "/asphalte/soumission",
   ctaLabel = "Soumission",
   switchLabel = "Besoin d'un scellant ?",
@@ -27,6 +28,7 @@ export function SiteHeader({
 }: {
   homeHref?: string;
   navItems?: HeaderNavItem[];
+  moreItems?: HeaderNavItem[];
   ctaHref?: string;
   ctaLabel?: string;
   switchLabel?: string;
@@ -36,7 +38,10 @@ export function SiteHeader({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const pathname = usePathname();
+  const allItems = [...navItems, ...moreItems];
+  const moreActive = moreItems.some((item) => pathname.startsWith(item.href));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -45,7 +50,10 @@ export function SiteHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => {
+    setOpen(false);
+    setMoreOpen(false);
+  }, [pathname]);
 
   return (
     <>
@@ -93,6 +101,61 @@ export function SiteHeader({
                 </Link>
               );
             })}
+
+            {moreItems.length > 0 && (
+              <div
+                className="relative"
+                onMouseEnter={() => setMoreOpen(true)}
+                onMouseLeave={() => setMoreOpen(false)}
+              >
+                <button
+                  type="button"
+                  onClick={() => setMoreOpen((v) => !v)}
+                  aria-expanded={moreOpen}
+                  aria-haspopup="true"
+                  className={cn(
+                    "flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] transition-colors duration-300",
+                    moreActive || moreOpen ? "text-hivis" : "text-warm/70 hover:text-warm"
+                  )}
+                >
+                  Plus
+                  <svg
+                    viewBox="0 0 12 12"
+                    className={cn("h-2.5 w-2.5 transition-transform duration-300", moreOpen && "rotate-180")}
+                    aria-hidden
+                  >
+                    <path d="M2 4l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <AnimatePresence>
+                  {moreOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 8 }}
+                      transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] as const }}
+                      className="absolute right-0 top-full min-w-[220px] border border-warm/10 bg-asphalt/95 p-1.5 shadow-xl shadow-black/40 backdrop-blur-md"
+                    >
+                      {moreItems.map((item) => {
+                        const active = pathname.startsWith(item.href);
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={cn(
+                              "block px-4 py-3 font-mono text-[0.7rem] uppercase tracking-[0.18em] transition-colors",
+                              active ? "text-hivis" : "text-warm/70 hover:bg-warm/5 hover:text-warm"
+                            )}
+                          >
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
           </nav>
 
           <div className="flex items-center gap-3">
@@ -146,7 +209,7 @@ export function SiteHeader({
               </p>
             )}
             <nav className={cn("flex flex-1 flex-col justify-center gap-1 px-6", !contextLabel && "mt-24")}>
-              {navItems.map((item, i) => (
+              {allItems.map((item, i) => (
                 <motion.div
                   key={item.href}
                   initial={{ opacity: 0, y: 24 }}

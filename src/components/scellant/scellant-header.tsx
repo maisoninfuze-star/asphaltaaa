@@ -8,6 +8,7 @@ export function ScellantHeader({ slug, name }: { slug: string; name: string }) {
     <SiteHeader
       homeHref={`/scellant/${slug}`}
       navItems={scellantNav(slug)}
+      moreItems={[]}
       ctaHref={`/scellant/${slug}/soumission`}
       ctaLabel="Soumission"
       switchLabel="Besoin d'un pavage ?"

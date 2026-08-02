@@ -17,6 +17,7 @@ export default function ScellantSelectorPage() {
       <SiteHeader
         homeHref="/scellant"
         navItems={[]}
+        moreItems={[]}
         ctaHref="/scellant"
         ctaLabel="Choisir ma région"
         switchLabel="Besoin d'un pavage ?"
