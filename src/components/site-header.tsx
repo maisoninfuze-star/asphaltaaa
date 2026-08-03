@@ -79,7 +79,8 @@ export function SiteHeader({
                 {contextLabel}
               </span>
             )}
-            {regionSwitcher}
+            {/* Switcher stays out of the tight phone bar to avoid crowding the logo. */}
+            {regionSwitcher && <div className="hidden md:block">{regionSwitcher}</div>}
           </div>
 
           <nav className="hidden items-center gap-8 xl:flex">
@@ -208,7 +209,13 @@ export function SiteHeader({
                 {contextLabel}
               </p>
             )}
-            <nav className={cn("flex flex-1 flex-col justify-center gap-1 px-6", !contextLabel && "mt-24")}>
+            {/* Region switcher lives in the menu on phones (hidden from the top bar there). */}
+            {regionSwitcher && (
+              <div className={cn("container-x md:hidden", contextLabel ? "mt-4" : "mt-24")}>
+                {regionSwitcher}
+              </div>
+            )}
+            <nav className={cn("flex flex-1 flex-col justify-center gap-1 px-6", !contextLabel && !regionSwitcher && "mt-24")}>
               {allItems.map((item, i) => (
                 <motion.div
                   key={item.href}
