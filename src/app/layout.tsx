@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Archivo, Archivo_Black, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
@@ -109,6 +110,14 @@ export default function RootLayout({
         <Cursor />
         <ScrollProgress />
         <SmoothScroll>{children}</SmoothScroll>
+        {/* GoHighLevel / LeadConnector chat widget */}
+        <Script
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="6a9340ab69049b9fa4e723cf"
+          data-source="WEB_USER"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
