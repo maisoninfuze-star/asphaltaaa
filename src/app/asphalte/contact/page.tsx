@@ -55,6 +55,14 @@ export default function ContactPage() {
                 {site.regions.join(" · ")} {site.regionsNote}
               </p>
             </div>
+            <div>
+              <p className="label-mono mb-2">Entreprise</p>
+              <p className="text-sm text-concrete-light">
+                {site.operatorLine}
+                <br />
+                {site.location} · NEQ {site.neq}
+              </p>
+            </div>
             <a
               href={site.facebook}
               target="_blank"

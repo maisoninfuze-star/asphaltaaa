@@ -128,17 +128,29 @@ export function SiteFooter({
       {/* Hazard strip */}
       <div className="tex-hazard h-2 opacity-80" aria-hidden />
 
-      <div className="container-x flex flex-col items-center justify-between gap-3 py-6 text-xs text-concrete sm:flex-row">
-        <p>
-          © {year} {site.name}. Tous droits réservés.
+      <div className="container-x flex flex-col gap-3 py-6 text-xs text-concrete">
+        <p className="text-center sm:text-left">
+          {site.operatorLine} · {site.location} ·{" "}
+          <a href={site.phoneHref} className="hover:text-warm">
+            {site.phone}
+          </a>{" "}
+          ·{" "}
+          <a href={site.emailHref} className="hover:text-warm">
+            {site.email}
+          </a>
         </p>
-        <div className="flex gap-6">
-          <Link href="/confidentialite" className="hover:text-warm">
-            Confidentialité
-          </Link>
-          <Link href="/conditions" className="hover:text-warm">
-            Conditions
-          </Link>
+        <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+          <p>
+            © {year} {site.name}. Tous droits réservés. · NEQ {site.neq}
+          </p>
+          <div className="flex gap-6">
+            <Link href="/confidentialite" className="hover:text-warm">
+              Politique de confidentialité
+            </Link>
+            <Link href="/conditions" className="hover:text-warm">
+              Conditions d&apos;utilisation
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

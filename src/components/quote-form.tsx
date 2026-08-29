@@ -8,6 +8,7 @@ import { z } from "zod";
 import { services } from "@/lib/site";
 import { site } from "@/lib/site";
 import { getLeadContext } from "@/lib/lead-context";
+import { SmsConsent } from "@/components/sms-consent";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +26,7 @@ const schema = z.object({
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().max(2000).optional(),
   consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
+  smsConsent: z.boolean().optional(),
 });
 type Values = z.infer<typeof schema>;
 
@@ -49,7 +51,7 @@ export function QuoteForm() {
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { services: [], projectType: undefined, surface: "", message: "", consent: false },
+    defaultValues: { services: [], projectType: undefined, surface: "", message: "", consent: false, smsConsent: false },
     mode: "onTouched",
   });
 
@@ -86,6 +88,7 @@ export function QuoteForm() {
         consent: values.consent,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         meta: {
+          smsConsent: values.smsConsent === true,
           projectType: values.projectType,
           services: values.services,
           surface: values.surface,
@@ -282,6 +285,7 @@ export function QuoteForm() {
                     <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
                   </label>
                   {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
+                  <SmsConsent {...register("smsConsent")} />
                 </fieldset>
               )}
             </motion.div>

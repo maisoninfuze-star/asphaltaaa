@@ -33,6 +33,7 @@ function buildTags(d: z.infer<typeof schema>): string[] {
   if (client === "Résidentiel") tags.push("Residential");
   if (client === "Commercial") tags.push("Commercial");
   if (d.meta?.photoUploaded) tags.push("Photo Uploaded");
+  if (d.meta?.smsConsent === true) tags.push("SMS Opt-In");
   const t = (d.meta?.timeline as string | undefined) ?? "";
   if (t === "Dès que possible") tags.push("High Intent");
   if (d.meta?.condition === "Dommages importants") tags.push("Possible Pavage");
@@ -73,6 +74,7 @@ export async function POST(req: Request) {
     region: lead.region ?? "",
     sourcePage: lead.sourcePage ?? "",
     consent: lead.consent ?? false,
+    smsConsent: m.smsConsent === true,
     message: lead.message ?? "",
     // Tags (array for GHL "Add tags"; CSV string as a fallback reference)
     tags,

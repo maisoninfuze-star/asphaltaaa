@@ -6,7 +6,9 @@
 
 export const site = {
   name: "Asphalte AAA",
-  legalName: "Asphalte AAA",
+  legalName: "9492-3653 Québec inc.",
+  operatorLine: "Asphalte AAA est exploité par 9492-3653 Québec inc.",
+  location: "Québec, Canada",
   neq: "1178789161",
   tagline: "Service d'asphalte complet",
   taglineLong: "De l'excavation à la surface finie — la précision AAA.",

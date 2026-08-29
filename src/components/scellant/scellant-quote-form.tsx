@@ -9,6 +9,7 @@ import { z } from "zod";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { cn } from "@/lib/utils";
 import { getLeadContext } from "@/lib/lead-context";
+import { SmsConsent } from "@/components/sms-consent";
 import type { ScellantLocation } from "@/lib/content/scellant-locations";
 
 const clientTypes = ["Résidentiel", "Commercial"] as const;
@@ -37,6 +38,7 @@ const schema = z.object({
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().max(2000).optional(),
   consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
+  smsConsent: z.boolean().optional(),
 });
 type Values = z.infer<typeof schema>;
 
@@ -61,7 +63,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
     formState: { errors, isSubmitting },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { dimensions: "", message: "", consent: false },
+    defaultValues: { dimensions: "", message: "", consent: false, smsConsent: false },
     mode: "onTouched",
   });
 
@@ -96,6 +98,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
         consent: values.consent,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         meta: {
+          smsConsent: values.smsConsent === true,
           locationSlug: location.slug,
           ghlLocationTag: location.ghlRouting.locationTag,
           clientType: values.clientType,
@@ -215,6 +218,7 @@ export function ScellantQuoteForm({ location }: { location: ScellantLocation }) 
                     <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
                   </label>
                   {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
+                  <SmsConsent {...register("smsConsent")} />
                 </div>
               )}
             </motion.div>

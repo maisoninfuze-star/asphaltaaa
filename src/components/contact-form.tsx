@@ -7,6 +7,7 @@ import { z } from "zod";
 import { Field, Input, Textarea } from "@/components/ui/field";
 import { ButtonEl } from "@/components/ui/button";
 import { getLeadContext } from "@/lib/lead-context";
+import { SmsConsent } from "@/components/sms-consent";
 
 const schema = z.object({
   name: z.string().min(2, "Entrez votre nom"),
@@ -14,6 +15,7 @@ const schema = z.object({
   email: z.string().email("Courriel invalide").or(z.literal("")),
   message: z.string().min(4, "Décrivez brièvement votre besoin"),
   consent: z.boolean().refine((v) => v === true, "Veuillez cocher cette autorisation."),
+  smsConsent: z.boolean().optional(),
 });
 type Values = z.infer<typeof schema>;
 
@@ -29,7 +31,7 @@ export function ContactForm({
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<Values>({ resolver: zodResolver(schema), defaultValues: { consent: false } });
+  } = useForm<Values>({ resolver: zodResolver(schema), defaultValues: { consent: false, smsConsent: false } });
 
   async function onSubmit(values: Values) {
     const res = await fetch("/api/lead", {
@@ -41,7 +43,7 @@ export function ContactForm({
         region,
         sourcePage: typeof window !== "undefined" ? window.location.pathname : "",
         ...values,
-        meta: getLeadContext(),
+        meta: { smsConsent: values.smsConsent === true, ...getLeadContext() },
       }),
     });
     if (res.ok) setSent(true);
@@ -80,6 +82,7 @@ export function ContactForm({
         <span>J&apos;autorise Asphalte AAA à communiquer avec moi au sujet de ma demande.</span>
       </label>
       {errors.consent && <p className="font-mono text-xs text-red-400">{errors.consent.message}</p>}
+      <SmsConsent {...register("smsConsent")} />
       <ButtonEl type="submit" disabled={isSubmitting} className="self-start">
         {isSubmitting ? "Envoi…" : "Envoyer le message"}
       </ButtonEl>
