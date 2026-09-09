@@ -13,7 +13,6 @@ import { ImageReveal } from "@/components/motion/image-reveal";
 import { BeforeAfter } from "@/components/motion/before-after";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { ScellantHero } from "@/components/scellant/scellant-hero";
-import { ScellantTransformation } from "@/components/scellant/scellant-transformation";
 
 const trust = [
   "Soumission gratuite",
@@ -42,7 +41,6 @@ export function ScellantHome({ location }: { location: ScellantLocation }) {
         </div>
       </section>
 
-      <ScellantTransformation />
 
       {/* Services */}
       <section className="border-t border-warm/10 bg-asphalt py-24 lg:py-32">

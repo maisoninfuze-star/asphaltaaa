@@ -24,6 +24,9 @@ const asphalteRedirects: [string, string][] = [
   ["/contact", "/asphalte/contact"],
   ["/soumission", "/asphalte/soumission"],
   ["/faq", "/asphalte/faq"],
+  // Scellant division: Montréal renamed to Rive-Sud (the actual service focus).
+  ["/scellant/montreal", "/scellant/rive-sud"],
+  ["/scellant/montreal/:path*", "/scellant/rive-sud/:path*"],
 ];
 
 const nextConfig: NextConfig = {

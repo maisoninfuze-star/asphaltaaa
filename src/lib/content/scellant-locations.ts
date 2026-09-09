@@ -11,7 +11,7 @@ import {
   type ScellantFAQ,
 } from "@/lib/content/scellant-shared";
 
-export type ScellantSlug = "montreal" | "quebec" | "rimouski";
+export type ScellantSlug = "rive-sud" | "quebec" | "rimouski" | "estrie";
 
 export type ScellantGalleryItem = {
   image: string;
@@ -66,10 +66,10 @@ const areaFaq = (region: string, municipalities: string[]): ScellantFAQ => ({
 
 export const scellantLocations: ScellantLocation[] = [
   {
-    slug: "montreal",
-    name: "Montréal",
-    regionLabel: "Montréal et la Rive-Sud",
-    heroTitle: "Scellant d'asphalte à Montréal et sur la Rive-Sud",
+    slug: "rive-sud",
+    name: "Rive-Sud",
+    regionLabel: "la Rive-Sud de Montréal",
+    heroTitle: "Scellant d'asphalte sur la Rive-Sud de Montréal",
     heroDescription:
       "Protégez et ravivez votre entrée d'asphalte sur la Rive-Sud de Montréal. Scellant durable, préparation soignée et fini noir profond — une équipe rapide et humaine.",
     phone: site.phone,
@@ -81,8 +81,8 @@ export const scellantLocations: ScellantLocation[] = [
     municipalitiesNote: "Secteurs desservis — à confirmer avec le propriétaire.",
     serviceAreaDescription:
       "Service de scellant et d'entretien d'asphalte pour les propriétés résidentielles et, selon le secteur, commerciales de la Rive-Sud de Montréal.",
-    cityPhoto: "/assets/regions/montreal.jpg",
-    heroMedia: { poster: scellantImg.regionHero("montreal"), video: scellantImg.heroVideo },
+    cityPhoto: "/assets/regions/rive-sud.jpg",
+    heroMedia: { poster: scellantImg.regionHero("rive-sud"), video: scellantImg.heroVideo },
     gallery: galleryFor(),
     testimonials: scellantTestimonials,
     faqs: [
@@ -90,17 +90,17 @@ export const scellantLocations: ScellantLocation[] = [
       areaFaq("la Rive-Sud de Montréal", ["Longueuil", "Brossard", "Saint-Lambert", "Boucherville", "Saint-Hubert"]),
     ],
     seo: {
-      title: "Scellant d'asphalte à Montréal et sur la Rive-Sud",
+      title: "Scellant d'asphalte sur la Rive-Sud de Montréal",
       description:
         "Scellant d'asphalte, réparation des fissures et entretien d'entrées de cour sur la Rive-Sud de Montréal. Soumission gratuite, fini noir profond et durable.",
       keywords: [
-        "scellant d'asphalte Montréal", "scellant asphalte Rive-Sud",
+        "scellant asphalte Rive-Sud",
         "entretien d'asphalte Rive-Sud", "réparation d'asphalte Rive-Sud",
         "protection entrée asphaltée Longueuil", "scellant entrée de cour Brossard",
       ],
-      canonicalPath: "/scellant/montreal",
+      canonicalPath: "/scellant/rive-sud",
     },
-    ghlRouting: { locationTag: "Scellant Montreal" },
+    ghlRouting: { locationTag: "Scellant Rive-Sud" },
   },
   {
     slug: "quebec",
@@ -174,6 +174,43 @@ export const scellantLocations: ScellantLocation[] = [
       canonicalPath: "/scellant/rimouski",
     },
     ghlRouting: { locationTag: "Scellant Rimouski" },
+  },
+  {
+    slug: "estrie",
+    name: "Estrie",
+    regionLabel: "l'Estrie",
+    heroTitle: "Scellant d'asphalte en Estrie",
+    heroDescription:
+      "Protégez votre entrée d'asphalte contre les hivers rigoureux de l'Estrie. Scellant durable, préparation soignée et fini noir profond — de Sherbrooke à Magog.",
+    phone: site.phone,
+    email: site.email,
+    municipalities: [
+      "Sherbrooke", "Magog", "Coaticook", "Windsor",
+      "East Angus", "Val-des-Sources", "Lac-Mégantic",
+    ],
+    municipalitiesNote: "Secteurs desservis — à confirmer avec le propriétaire.",
+    serviceAreaDescription:
+      "Service de scellant et d'entretien d'asphalte pour les propriétés résidentielles et, selon le secteur, commerciales de l'Estrie.",
+    cityPhoto: "/assets/regions/estrie.jpg",
+    heroMedia: { poster: scellantImg.regionHero("estrie"), video: scellantImg.heroVideo },
+    gallery: galleryFor(),
+    testimonials: scellantTestimonials,
+    faqs: [
+      ...scellantFaqs,
+      areaFaq("l'Estrie", ["Sherbrooke", "Magog", "Coaticook", "Windsor", "East Angus"]),
+    ],
+    seo: {
+      title: "Scellant d'asphalte en Estrie",
+      description:
+        "Scellant d'asphalte, réparation des fissures et entretien d'entrées de cour en Estrie — Sherbrooke, Magog et les environs. Soumission gratuite.",
+      keywords: [
+        "scellant d'asphalte Estrie", "scellant d'asphalte Sherbrooke",
+        "entretien d'asphalte Sherbrooke", "réparation d'asphalte Estrie",
+        "protection entrée asphaltée Magog",
+      ],
+      canonicalPath: "/scellant/estrie",
+    },
+    ghlRouting: { locationTag: "Scellant Estrie" },
   },
 ];
 

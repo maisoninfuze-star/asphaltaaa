@@ -25,6 +25,7 @@ export const site = {
   regions: [
     "Rive-Sud de Montréal",
     "Québec",
+    "Estrie",
     "Chicoutimi",
     "Rimouski",
     "Thetford Mines",
